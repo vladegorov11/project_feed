@@ -21,7 +21,6 @@ class EventsController < ApplicationController
     end
 
     def new_events
-
       require 'koala'
       #oauth = Koala::Facebook::OAuth.new
       @graph = Koala::Facebook::API.new
