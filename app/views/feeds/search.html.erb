@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Feeds</h1>
+<%= link_to 'Sources', sources_path %>|| <%= link_to 'Back To All Feeds', feeds_path %>
+<%= render 'search'%>
+<div class="row">
+    <% @feeds.each do |feed| %>
+    <div class="col-md-4 article-padding" id="<%= feed.id %>">
+      <img src="<%= feed.image %>" alt="" class="news-img">
+
+      <h3><%= link_to feed.title, feed %></h3>
+      <small><p style=”margin-top:-10px”> <%= feed.data_time.strftime("%I:%M %d-%m-%Y") %> | <a href="<%= feed.link %>"><em>Адрес оригинала</em></a></a></p></small>
+      <p>
+      <%= feed.description.html_safe.slice(1..100)  %>
+      </p>
+      <%= link_to 'Show', feed %> |
+      <%= link_to 'Edit', edit_feed_path(feed) %> |
+      <%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+    <% end %>
+</div>
+
+<br>
+
+<%= link_to 'New Feed', new_feed_path %>

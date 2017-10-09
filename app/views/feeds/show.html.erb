@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+
+  <div class="col-md-8">
+    <img src="<%= @feed.image %>" alt="" class="show-news-img">
+    <%if @user.feeds.ids.include?(@feed.id) %>
+    <%= link_to 'удалить из избранного', favorite_feed_path(@feed.id)%>
+    <% else %>
+    <%= link_to 'добавить в избранное', favorite_feed_path(@feed.id)%>
+    <% end %>
+    <h4><%= @feed.title %></h4>
+    <%= @feed.data_time.to_date.strftime("%d-%m-%Y") %> <i class="material-icons">remove_red_eye</i>33
+    <%= @feed.full_description.html_safe%>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_feed_path(@feed) %> |
+<%= link_to 'Back', feeds_path %>
+<%= render 'comment'%>

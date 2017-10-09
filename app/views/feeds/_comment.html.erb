@@ -1,0 +1,33 @@
+<h2>Добавить комментарий:</h2>
+<%= form_with(model: [ @feed, @feed.comments.build ], local: true) do |f| %>
+<span>
+  <%= image_tag current_user.avatar.url(:thumb), :style => "width: 70px;height: 70px;"  if current_user.avatar? %>
+</span>
+  <span>
+    Ник: <%= current_user.nick_name %>
+  </span>
+
+  <br>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit 'Добавть комментарий', class: 'btn btn-success' %>
+  </p>
+<% end %>
+
+<h3>Коментарии</h3>
+<% @feed.comments.each do |comment| %>
+    <p>
+      <%= comment.author %>
+    </p>
+    <p>
+      <%= comment.body %>
+    </p>
+    <p>
+      <% if current_user.id == comment.user_id%>
+    <%= link_to 'Удалить коментарий', [comment.feed, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </p>
+<% end %>

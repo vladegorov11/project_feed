@@ -1,0 +1,46 @@
+<%= current_user.email %>
+
+<%= form_with(model: @user, local: true, html: {multipart: true}) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label 'имя' %>
+    <%= f.text_field :first_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label "ник" %>
+    <%= f.text_field :nick_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "фамилия " %>
+    <%= f.text_field :last_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= image_tag @user.avatar.url(:thumb), :style => "width: 70px;height: 70px;"  if @user.avatar? %>
+    <%= f.label "иконка профиля" %>
+    <%= f.file_field :avatar, class: 'form-control' %>
+  </div>
+  <%  @source.each do |source| %>
+    <label for=""><%= source.name%></label>
+    <%if @user.sourse_mass_id.include?(source.id.to_s) %>
+    <%= f.check_box( :sourse_mass_id, {:multiple => true , :checked => true}, source.id , nil) %>
+    <% else %>
+    <%= f.check_box( :sourse_mass_id, {:multiple => true}, source.id , nil) %>
+    <% end %>
+  <% end %>
+  <br>
+  <div class="btn">
+    <%= f.submit "Сохранить" %>
+  </div>
+<% end %>
+<%= link_to 'назад', profile_user_path(current_user.id)%>

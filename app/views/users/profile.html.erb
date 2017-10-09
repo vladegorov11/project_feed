@@ -1,0 +1,34 @@
+<%=link_to 'редактировать профиль',  profile_setup_user_path(current_user.id) %><br>
+<%=link_to  'назад к новостям', feeds_path %><br>
+<%= image_tag @user.avatar.url(:thumb), :style => "width: 100px;height: 100px; border-radius:55px;"  if @user.avatar? %><br>
+<span>Email:  </span><%= @user.email %><br>
+<span>Имя:  </span><%= @user.first_name %><br>
+<span>Фамилия:  </span><%= @user.last_name %><br>
+<span>Никнейм:  </span><%= @user.nick_name %><br>
+<br>
+<div class="row">
+    <div class="col-md-4">
+      <%= @user.sourse_mass_id.each do |my_source| %><br>
+        <ul>
+          <li><%= my_source%></li>
+        </ul>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <h4>Избранное</h4>
+     <% @user.feeds.each do |favorite| %>
+
+     <div style="width:100px; height:auto;">
+     <img src="<%= favorite.image%>" alt="" width="100px" height="70px"><br>
+     <%= link_to favorite.title.slice(0..30), feed_path(favorite.id) if favorite.image?%>
+     </div>
+     <%end%>
+    </div>
+    <div class="col-md-4">
+         <% @user.comments.each do |user_comment| %>
+            <%= link_to 'Show', feed_url(user_comment.feed_id) %>
+            <span>имя:</span><%=user_comment.author%><br>
+            <span>комментарий:</span>  <%=user_comment.body%>   <br> <br>
+         <%end%>
+    </div>
+</div>
