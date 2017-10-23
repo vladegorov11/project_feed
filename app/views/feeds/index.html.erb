@@ -1,50 +1,17 @@
 <p id="notice"><%= notice %></p>
-<div class="nav_menu" style="background: #f3f3f4; padding: 10px, 5px;">
-  <img src="https://cdn0.iconfinder.com/data/icons/customicondesignoffice5/256/announcements.png" alt="News" width="100px" height="100px" >
-  <%if user_signed_in? %>
-  <a href="<%= profile_user_path(current_user.id)%>">
-  <%= image_tag current_user.avatar.url(:thumb),:style => "width: 80px;height: 80px; border-radius:55px; float:right; margin-right:30px; margin-top:10px;" if current_user.avatar?%>
-  </a>
-  <% end %>
-</div>
+
 <div class="news-size"><%= "Количество новостей на сайте: #{@size} "%></div>
-<%= link_to 'Загрузить новые новости', update_news_feeds_path, data: { confirm: 'Are you sure?' } %>
-<div><%= link_to 'Список ресурсов', sources_path %></div>
+<%= link_to 'Загрузить новые новости', update_news_feeds_path, data: { confirm: 'Are you sure?' } %>|
+<%= link_to 'Список ресурсов', sources_path %>|
+<%= link_to 'Список категорий', categories_path %>
 
-<%if user_signed_in? %>
-  <%=link_to 'Выйти', destroy_user_session_path , method: :delete%>|
-  <%=link_to 'профайл',  profile_user_path(current_user.id) %>
-<% else %>
-  <%=link_to 'Войти', new_user_session_path%>
-  <%=link_to 'Зарегистрироватся', new_user_registration_path%>
-<% end %>
-<br>
-<%=link_to 'Новости', feeds_path%>|
-<%=link_to 'События', events_path%>
-<%= render 'search'%>
 
-<div class="row">
-    <% @feeds.each do |feed| %>
-    <div class="col-md-4" style="padding: 5px;" id="<%= feed.id %>">
-      <div class="article-padding" >
-      <img src="<%= feed.image %>" alt="" class="news-img">
-      <i class="material-icons">comment</i> <%= feed.comments.size %>
-      <h3><%= link_to feed.title, feed %></h3>
-      <div class="link_and_time">
-        <small><p style=”margin-top:-10px”> <%= feed.data_time.strftime("%I:%M %d-%m-%Y") %> | <a href="<%= feed.link %>"><em>Адрес оригинала</em></a></a></p></small>
-      </div>
-      <p>
-      <%= feed.description.html_safe.slice(1..100)  %>
-      </p>
-        <%= social_share_button_tag( feed.title ) %>
-      <%= link_to 'Show', feed %> |
-      <%= link_to 'Edit', edit_feed_path(feed) %> |
-      <%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </div>
-    </div>
-    <% end %>
-</div>
+<!-- <%= render 'search'%> -->
+<section id='feeds'>
+  <%= render 'shared/feed_item' %>
+</section>
 
+<%= will_paginate @feeds %>
 <br>
 
 <%= link_to 'New Feed', new_feed_path %>

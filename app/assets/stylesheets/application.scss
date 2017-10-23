@@ -15,15 +15,16 @@
  */
 @import "social-share-button";
 @import "bootstrap";
+@import "font-awesome";
+
+
+
+/* старое ______---=------------------- */
 .show-news-img {
-  width: auto;
-  height: 300px;
   display: block;
+  width: 70%;
 }
-.show-news-img img {
-  height: 100%;
-  width: 100%;
-}
+
 .news-img {
   width: 100%;
   height: 200px;
@@ -123,3 +124,471 @@ p img {
            .switchOn:after{
                 left:27px;
            }
+
+.source-wrapper label {
+  color: #000;
+  font-size: 16px;
+}
+/* старое ______---=------------------- */
+
+
+
+
+html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+body {
+   font-family: 'Roboto', sans-serif;
+   font-size: 14px;
+   background: #f1f1f1;
+}
+.header {
+	box-shadow: 0px 0px 14px 3px #000000;
+	height: auto;
+	background: #008B8B url(http://www.wallpaperbetter.com/wallpaper/132/879/623/new-york-city-night-view-street-buildings-skyscrapers-lights-usa-1080P-wallpaper.jpg) no-repeat;
+	background-blend-mode: overlay;
+	background-size: cover;
+}
+/*меню первого уровня------------------------------------ */
+.logo {
+	font-size: 22px;
+	color: #fff;
+	font-weight: 600;
+  height: 63px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo img {
+	height: 100px;
+	width: 100px;
+}
+.nav-nemu {
+	margin-top: 30px;
+	padding: 10px 10px;
+}
+.top-bar {
+  height: 100%;
+  text-align: center;
+  display: block;
+  vertical-align: center;
+}
+
+.top-bar-items{
+
+}
+.top-bar-items span{
+  display: block;
+  padding: 0px 20px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+.top-bar-items li {
+	 float: left;
+	 list-style: none;
+	 font-size: 16px;
+}
+
+.top-bar-items li a {
+	 text-transform: uppercase;
+	 display: block;
+	 padding: 20px 20px;
+	 text-decoration: none;
+	 color: #fff;
+	 border-bottom: 1px solid  transparent;
+}
+.top-bar-items li a:hover {
+	color: #fff;
+    border-bottom: 1px solid  #fff;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.social-link-top li a {
+  border: 0 ;
+  color: #ffffff;
+  font-size: 26px;
+  padding-top: 12px;
+}
+.social-link-top li a:hover .fa-facebook-square{
+	color: #4169E1;
+}
+.social-link-top li a:hover .fa-instagram{
+   color: #bc2a8d;
+}
+.social-link-top li a:hover .fa-google-plus-official{
+	color: #d34836;
+}
+.social-link-top li a:hover {
+   border: 0 ;
+   text-shadow: 0;
+
+}
+/*блок поиска------------------------*/
+.search{
+	height: 200px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rates {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.search-input {
+	background-color: rgba(0, 139, 139, 0.3);
+}
+.group 			  {
+  position:relative;
+
+
+}
+.search-input		{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width: 100%;
+  border:none;
+  border-bottom:1px solid  #fff;
+  box-shadow: 0px 3px 16px  0px #000000;
+}
+.search-btn {
+  position: relative;
+  top: -35px;
+  left: 90%;
+  background: url(https://api.icons8.com/download/e01fdf06b5a947b5517bf8f2f06254a0167c5f35/Android/PNG/512/Very_Basic/search-512.png) no-repeat;
+  background-size: contain;
+  width: 40px;
+  height: 25px;
+  border: 0 ;
+
+}
+#form-search {
+
+}
+input:focus 		{ outline:none; }
+
+
+ .search-label 				 {
+  color:#fff;
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all;
+  -moz-transition:0.2s ease all;
+  -webkit-transition:0.2s ease all;
+}
+
+
+input:focus ~ label, input:valid ~ label 		{
+  top:-25px;
+  font-size:18px;
+  color:#fff;
+}
+
+
+.bar 	{ position:relative; display:block; width:100%; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px;
+  width:0;
+  bottom:1px;
+  position:absolute;
+  background:#fff;
+  transition:0.2s ease all;
+  -moz-transition:0.2s ease all;
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%;
+}
+
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
+
+
+.highlight {
+  position:absolute;
+  height:40%;
+  width:80%;
+  top:1%;
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.8s ease;
+  -moz-animation:inputHighlighter 0.8s ease;
+  animation:inputHighlighter 0.8s ease;
+}
+
+
+
+@-webkit-keyframes inputHighlighter {
+	from { background:#008B8B; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:#008B8B; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:#008B8B; }
+  to 	{ width:0; background:transparent; }
+}
+
+
+/*блок меню третиго уровня ---------------------------------------*/
+.news-bar {
+	height: 100%;
+	padding:0;
+}
+.news-nav{
+	padding: 0;
+	position:relative;
+	bottom:0;
+	right:0;
+	margin-top: 50px;
+}
+.news-nav li {
+  box-shadow: 0 -5px 14px -5px #000000;
+  width: 33.3%;
+  font-size: 18px;
+  text-align: center;
+  background-color: rgba(0, 139, 139, 0.3);
+}
+
+.news-nav li a:hover {
+
+}
+
+
+
+
+/* Заголовок демо-страницы */
+h1{
+    text-align: center;
+    font-weight: 400;
+}
+
+/* Общий контейнер */
+.wrapper {
+    width: 100%;
+    margin: 3em auto;
+}
+
+/* ------------- Контейнер с адаптивными блоками------------- */
+.masonry {
+
+    margin: 1.5em 0;
+    padding: 0;
+    column-gap: 1.5em; /* Общее расстояние между колонками */
+    font-size: 1em;
+    -moz-column-gap: 1.5em; /* Расстояние между колонками для Firefox */
+    -webkit-column-gap: 1.5em; /* Расстояние между колонками  для Safari, Chrome и iOS */
+}
+
+/* Элементы в виде плиток с содержанием */
+.item {
+    display: inline-block;
+    background: #fff;
+    padding: 1em;
+    margin: 0 0 1.5em;
+    width: 100%;
+    box-sizing: border-box; /* Изменения алгоритма расчета ширины и высоты элемента.*/
+    -moz-box-sizing: border-box; /* Для Firefox */
+    -webkit-box-sizing: border-box; /* Для Safari, Chrome, iOS иAndroid */
+    box-shadow:  2px 5px 7px -1px rgba(0, 170, 186, 0.75);
+}
+
+/* Стили картинок, видое и фреймов внутри адаптивных плиток */
+img, iframe {
+max-width: 100%;
+height: auto;
+
+}
+
+/* Стили ссылок внутри плиток */
+/*.item a {
+text-decoration: none;
+color: #359CC6;
+margin: 0 10px;
+}*/
+
+/* Стили ссылок при наведении */
+/*.item a:hover {
+color: #E88F00;
+border-bottom: 1px dotted #9F1D35;
+}*/
+
+/* Медиа-запросы для различных размеров адаптивного макета */
+@media only screen and (min-width: 400px) {
+    .masonry {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .masonry {
+        -moz-column-count: 3;
+        -webkit-column-count: 3;
+        column-count: 3;
+    }
+}
+
+
+@media only screen and (min-width: 1280px) {
+    .wrapper {
+        width: 1260px;
+    }
+}
+.img-hover {
+	position: relative;
+}
+
+.desc {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	text-align: center;
+	color: #fff;
+	padding-top: 30%;
+	-webkit-transition:  ease-out 0.3s;
+     -moz-transition:  ease-out 0.3s;
+     -o-transition:  ease-out 0.3s;
+     transition:  ease-out 0.3s;
+
+}
+.item:hover .desc {
+	opacity: 1;
+	/*transform: rotate(360deg);*/
+}
+.item:hover {
+	box-shadow:  2px 5px 8px 2px rgba(0, 170, 186, 0.75);
+}
+.read {
+	width: 45px;
+	height: 50px;
+	position: relative;
+	top: -23px;
+	left: -10px;
+	float: right;
+}
+.read a  {
+	border-radius: 60px;
+	font-size: 32px;
+	background: rgba(0, 170, 186, 1);
+	display: block;
+	padding-left: 40%;
+	color: #ffffff;
+}
+.item-info {
+  padding-top: 10px;
+}
+.item-info span{
+	font-size: 14px;
+	margin-right: 15px;
+}
+ // формы авторизации ----------------------
+.reg_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.new_user {
+  width: 100%;
+
+}
+.reg_form {
+  margin-top: 5%;
+  background: #fff;
+  padding: 50px;
+}
+.field input {
+   outline: none;
+   width: 100%;
+   border-radius: 5px;
+   background: #f1f1f1;
+   color: #000;
+   border: none;
+   height: 30px;
+   padding: 5px;
+}
+.field input:focus {
+  background: #f1f1f1;
+}
+.field i {
+  font-size: 18px;
+  position: relative;
+  left: 90%;
+  top: -24px;
+}
+/* блок комментариев---------------- */
+.comment-wrapper {
+  background: #dcdcdc;
+  padding: 30px;
+}
+.user_icon {
+  float: right;
+  width: 70px;
+  height: 70px;
+}
+.text-area-comment {
+  margin-top: 20px;
+	padding: 30px;
+  width: 70%;
+	height: 200px;
+	border-radius: 5px;
+	border: 1px solid #c3c3c3;
+	resize: none;
+}
+ .text-area-comment:focus {
+   outline:none;
+ }
+.text-area-comment::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.5s ease;}
+.text-area-comment::-moz-placeholder                {opacity: 1; transition: opacity 0.5s ease;}
+.text-area-comment:-moz-placeholder                 {opacity: 1; transition: opacity 0.5s ease;}
+.text-area-comment:-ms-input-placeholder            {opacity: 1; transition: opacity 0.5s ease;}
+.text-area-comment:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.5s ease;}
+.text-area-comment:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.5s ease;}
+.text-area-comment:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.5s ease;}
+.text-area-comment:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.5s ease;}
+
+.comment-author {
+  margin-bottom: 20px;
+}
+.comment-body {
+
+}
+.comment {
+  background: #fff;
+  padding: 20px;
+}
+.btn {
+  margin: 0;
+}
+.favorite {
+  float: right;
+  font-size: 28px;
+  margin-right: 10%;
+}

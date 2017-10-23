@@ -58,6 +58,6 @@ class SourcesController < ApplicationController
 
 
     def source_params
-      params.require(:source).permit(:name, :password, :login, :api_url, :image_url, :description_url)
+      params.require(:source).permit(:name, :password, :login, :api_url, :image_url, :description_url, :category_ids => [])
     end
 end

@@ -34,6 +34,11 @@
     <%= f.label "Url картинки " %>
     <%= f.text_field :image_url, class: 'form-control' %>
   </div>
+  <div class="field">
+    <%= f.label :category_ids, "Categories" %><br />
+    <%= f.collection_select :category_ids, Category.order(:name), :id, :name, {}, {multiple: true} %>
+  </div>
+
   <div class="btn">
     <%= f.submit "Создать ресурс" %>
   </div>

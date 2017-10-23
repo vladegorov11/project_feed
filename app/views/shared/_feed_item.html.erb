@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+<div class="masonry container-fluid">
+    <% @feeds.each do |feed| %>
+       <div class="item">
+           <div class="img-hover">
+          <%strip_description = strip_tags(feed.description)%>
+           <span class="desc"><p style="padding:5px;"><%= strip_tags(feed.description).slice(0..100)  %>...</p></span>
+           <img src="<%= feed.image %>">
+            </div>
+            <div class="read">
+              <%= link_to "<i class='fa fa-angle-right' aria-hidden='true'></i>".html_safe, feed %>
+            </div>
+            <div class="item-info">
+              <span><i class="fa fa-commenting" aria-hidden="true"></i> <%= feed.comments.size %></span>
+              <span><i class="fa fa-eye" aria-hidden="true"></i> 33 </span>
+              <a href="<%= feed.link %>">Оригинал</a>
+              <p><%= feed.data_time.strftime("%I:%M %d-%m-%Y") %></p>
+            </div>
+               <br><%= link_to feed.title, feed %>
+               <br><%= social_share_button_tag( feed.title ) %>
+               <%= link_to 'Edit', edit_feed_path(feed) %> |
+               <%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+
+    <% end %>
+ </div>

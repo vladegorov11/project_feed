@@ -1,0 +1,40 @@
+<div class="container comment-wrapper">
+<% if user_signed_in? %>
+  <h2>Добавить комментарий:</h2>
+  <%= form_with(model: [ @feed, @feed.comments.build ], local: true) do |f| %>
+
+    <%= image_tag current_user.avatar.url(:thumb), class: "user_icon"  if current_user.avatar? %>
+    <span>
+      Ник: <%= current_user.nick_name %>
+    </span>
+    <br>
+    <p>
+      <%= f.text_area :body, class: "text-area-comment", placeholder: "Текст комментария" %>
+    </p>
+    <p>
+      <%= f.submit 'Добавть комментарий', class: 'btn btn-success' %>
+    </p>
+  <% end %>
+<% end %>
+<h3>Коментарии</h3>
+<% @feed.comments.reject{|e| e.new_record? }.each do |comment| %>
+   <div class="comment">
+     <div class="comment-author">
+       <span style="font-weight:600; font-size:16px;"><%= comment.author %></span>
+       <span style="float:right;"><%= comment.created_at.strftime("%I:%M %d-%m-%Y") %></span>
+     </div>
+     <div class="comment-body">
+       <p>
+         <%= comment.body %>
+       </p>
+       <p>
+         <% if user_signed_in? %>
+           <% if current_user.id == comment.user_id%>
+             <%= link_to 'Удалить коментарий', [comment.feed, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+           <% end %>
+         <% end %>
+       </p>
+     </div>
+   </div>
+<% end %>
+</div>

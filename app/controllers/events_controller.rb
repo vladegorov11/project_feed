@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
   def index
      @events = Event.all
-     new_events
+
   end
 
   def show
@@ -17,26 +17,7 @@ class EventsController < ApplicationController
   private
 
     def set_event
-      @event = Event.find(current_user.id)
+      @event = Event.find(params[:id])
     end
 
-    def new_events
-      require 'koala'
-      #oauth = Koala::Facebook::OAuth.new
-      @graph = Koala::Facebook::API.new
-      #(oauth.get_app_access_token)
-      profile = @graph.search('днепр', type: :event)
-         profile.each do |fb_event|
-            #  puts  fb_event["place"]["location"]["street"]
-            begin
-              puts fb_event["place"]["location"]["street"]
-              puts fb_event["place"]["location"]["city"]
-              puts fb_event ["name"]
-            rescue
-              puts "ничего"
-            end
-         end
-      #puts profile
-      puts "hi"
-    end
 end

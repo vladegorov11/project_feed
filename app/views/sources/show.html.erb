@@ -1,4 +1,30 @@
 <p id="notice"><%= notice %></p>
 
+<table>
+  <thead>
+    <tr class="index_table">
+      <td>Название ресурса</td>
+      <td>Логин ресурса</td>
+      <td>Пароль ресурса</td>
+      <td>Url ресурса </td>
+      <td>Url изображения </td>
+      <td>Url описания </td>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr class="index_table">
+        <td><%= @source.name %></td>
+        <td><%= @source.login %></td>
+        <td><%= @source.password %></td>
+        <td><%= @source.api_url %></td>
+        <td><%= @source.image_url %></td>
+        <td><%= @source.description_url %></td>
+      </tr>
+
+  </tbody>
+</table>
+
+
 <%= link_to 'Edit', edit_source_path(@source) %> |
 <%= link_to 'Back', sources_path %>

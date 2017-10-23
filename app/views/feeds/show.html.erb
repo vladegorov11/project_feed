@@ -3,17 +3,27 @@
 
   <div class="col-md-8">
     <img src="<%= @feed.image %>" alt="" class="show-news-img">
-    <%if @user.feeds.ids.include?(@feed.id) %>
-    <%= link_to 'удалить из избранного', favorite_feed_path(@feed.id)%>
-    <% else %>
-    <%= link_to 'добавить в избранное', favorite_feed_path(@feed.id)%>
-    <% end %>
+
     <h4><%= @feed.title %></h4>
     <%= @feed.data_time.to_date.strftime("%d-%m-%Y") %> <i class="material-icons">remove_red_eye</i>33
+    <span class="favorite">
+      <% if user_signed_in? %>
+        <%@user = User.find(current_user.id)%>
+          <%if @user.feeds.ids.include?(@feed.id) %>
+            <a href="<%= favorite_feed_path(@feed.id) %>" title="удалить из избранного"><i class="fa fa-star" aria-hidden="true"></i></a>
+          <% else %>
+            <a href="<%= favorite_feed_path(@feed.id) %>" title="добавить в избранное"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+          <% end %>
+        <% end %>
+    </span>
     <%= @feed.full_description.html_safe%>
+    <%= render 'shared/comment'%>
+  </div>
+  <div class="col-md-4">
+    <h5 style="text-align:center;">Вам может понравится</h5>
+    <%= render 'shared/might_like'%>
   </div>
 </div>
 
 <%= link_to 'Edit', edit_feed_path(@feed) %> |
 <%= link_to 'Back', feeds_path %>
-<%= render 'comment'%>

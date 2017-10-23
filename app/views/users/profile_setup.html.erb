@@ -30,14 +30,16 @@
     <%= f.label "иконка профиля" %>
     <%= f.file_field :avatar, class: 'form-control' %>
   </div>
-  <%  @source.each do |source| %>
-    <label for=""><%= source.name%></label>
-    <%if @user.sourse_mass_id.include?(source.id.to_s) %>
-    <%= f.check_box( :sourse_mass_id, {:multiple => true , :checked => true}, source.id , nil) %>
-    <% else %>
-    <%= f.check_box( :sourse_mass_id, {:multiple => true}, source.id , nil) %>
+  <div class="source-wrapper">
+    <%  @source.each do |source| %>
+      <span><%= source.name%></span>
+      <%if @user.sourse_mass_id.include?(source.id.to_s) %>
+      <%= f.check_box( :sourse_mass_id, {:multiple => true , :checked => true}, source.id , nil) %>
+      <% else %>
+      <%= f.check_box( :sourse_mass_id, {:multiple => true}, source.id , nil) %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
   <br>
   <div class="btn">
     <%= f.submit "Сохранить" %>

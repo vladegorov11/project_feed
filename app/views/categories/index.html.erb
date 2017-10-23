@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>categorie</h1>
+
+<table>
+  <thead>
+    <tr class="index_table">
+      <td>Название категории</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |categorie| %>
+      <tr class="index_table">
+        <td><%= categorie.name %></td>
+        <td><%= link_to 'Show', categorie %></td>
+        <td><%= link_to 'Edit', edit_category_path(categorie) %></td>
+        <td><%= link_to 'Destroy', categorie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New categorie', new_category_path %> | <%= link_to 'Back To Feeds', feeds_path %>

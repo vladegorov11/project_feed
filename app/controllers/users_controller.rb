@@ -1,14 +1,12 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:update, :profile_setup, :profile]
+  before_action :set_user, only: [:update, :profile_setup, :show, :profile]
   def profile
-
-  end
+   end
 
   def profile_setup
      @source = Source.all
   end
-
 
   def update
     puts user_params[:sourse_mass_id]
@@ -27,7 +25,7 @@ class UsersController < ApplicationController
   private
 
     def set_user
-      @user = User.find(current_user.id)
+      @user = current_user
     end
 
     def user_params
