@@ -23,6 +23,11 @@
         <td><%= source.api_url %></td>
         <td><%= source.image_url %></td>
         <td><%= source.description_url %></td>
+        <td>
+          <%source.categories.each do |cetegory| %>
+            <%= cetegory.name %>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', source %></td>
         <td><%= link_to 'Edit', edit_source_path(source) %></td>
         <td><%= link_to 'Destroy', source, method: :delete, data: { confirm: 'Are you sure?' } %></td>

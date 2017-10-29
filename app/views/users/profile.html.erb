@@ -1,34 +1,37 @@
-<%=link_to 'редактировать профиль',  profile_setup_user_path(current_user.id) %><br>
-<%=link_to  'назад к новостям', feeds_path %><br>
-<%= image_tag @user.avatar.url(:thumb), :style => "width: 100px;height: 100px; border-radius:55px;"  if @user.avatar? %><br>
-<span>Email:  </span><%= @user.email %><br>
-<span>Имя:  </span><%= @user.first_name %><br>
-<span>Фамилия:  </span><%= @user.last_name %><br>
-<span>Никнейм:  </span><%= @user.nick_name %><br>
-<br>
-<div class="row">
-    <div class="col-md-4">
-      <%= @user.sourse_mass_id.each do |my_source| %><br>
-        <ul>
-          <li><%= my_source%></li>
-        </ul>
-      <% end %>
-    </div>
-    <div class="col-md-4">
-      <h4>Избранное</h4>
-     <% @user.feeds.each do |favorite| %>
 
-     <div style="width:100px; height:auto;">
-     <img src="<%= favorite.image%>" alt="" width="100px" height="70px"><br>
-     <%= link_to favorite.title.slice(0..30), feed_path(favorite.id) if favorite.image?%>
-     </div>
-     <%end%>
+<div class="tabs">
+  <ul class="nav  nav-tabs profile_nav_link ">
+    <li class="active">
+      <a href="#tab-1" data-toggle="tab">Мой профиль</a>
+    </li>
+    <li>
+      <a href="#tab-2" data-toggle="tab">Мои комментарии<span class="badge"><%= @user.comments.size%></span></a>
+    </li>
+    <li>
+      <a href="#tab-3" data-toggle="tab">Избранное<span class="badge"><%= @user.feeds.size%></span></a>
+    </li>
+  </ul>
+
+</div>
+<div class="row">
+  <div class="col-md-4">
+   <div class="user_bar">
+     <%= render 'shared/my_profile'%>
+   </div>
+  </div>
+  <div class="col-md-8">
+    <div class="user_bar user_right_bar">
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab-1">
+
+        </div>
+        <div class="tab-pane " id="tab-2">
+          <%= render 'shared/my_comments'%>
+        </div>
+        <div class="tab-pane " id="tab-3">
+          <%= render 'shared/my_favorite'%>
+        </div>
+      </div>
     </div>
-    <div class="col-md-4">
-         <% @user.comments.each do |user_comment| %>
-            <%= link_to 'Show', feed_url(user_comment.feed_id) %>
-            <span>имя:</span><%=user_comment.author%><br>
-            <span>комментарий:</span>  <%=user_comment.body%>   <br> <br>
-         <%end%>
-    </div>
+  </div>
 </div>

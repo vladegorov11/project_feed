@@ -1,4 +1,4 @@
-class CategoriesController < ApplicationController
+class Admin::CategoriesController < ApplicationController
  before_action :set_category, only: [:destroy, :show, :edit, :update]
 
  def index

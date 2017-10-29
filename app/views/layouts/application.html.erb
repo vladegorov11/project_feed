@@ -11,10 +11,13 @@
   </head>
 
   <body>
-    <%= render 'shared/header'%>
+
+
+    <%= render 'shared/nav_header'%>
+    <%= render 'shared/header_other'%>
     <div class="container-fluid">
          <%= yield %>
     </div>
-
+    <%= render 'shared/footer'%>
   </body>
 </html>

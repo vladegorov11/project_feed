@@ -16,6 +16,13 @@ class FeedsController < ApplicationController
     end
 
     def show
+      @categories = Category.all.order("view_count DESC")
+      @feed = @feed.increment(:view_count)
+      @feed.save
+      @feed.source.categories.each do |category|
+        category.increment(:view_count)
+        category.save
+      end
       #  @user = User.find(current_user.id)
     end
 
@@ -24,12 +31,13 @@ class FeedsController < ApplicationController
         @user  = current_user
         @feeds = Feed.where(source_id: @user.sourse_mass_id ).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
         @size  = @feeds.size
+        @user.last_visit = Time.now
+        @user.save
       end
     end
 
     def favorite
       @user = current_user
-#      puts @user
       if @user.feeds.ids.include?(@feed.id)
          puts "новость уже в избраном"
          @user.feeds.delete(@feed)
@@ -42,7 +50,8 @@ class FeedsController < ApplicationController
 
 
     def search
-        @feeds = Feed.search("#{params[:title_search]}").records.all.paginate(:page => params[:page], :per_page => 20)  unless params[:title_search].blank?
+        @feeds = Feed.search("#{params[:title_search]}").records.all.
+          paginate(:page => params[:page], :per_page => 20)  unless params[:title_search].blank?
         # @feeds = Feed.order("created_at DESC")
         # @feeds = @feeds.where("source_id = ?", params[:source_id] ) unless params[:source_id].blank?
         # @feeds = @feeds.where(["title  LIKE ? ", "%#{params[:title_search]}%"]) unless params[:title_search].blank?

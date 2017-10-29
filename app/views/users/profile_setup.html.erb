@@ -31,14 +31,26 @@
     <%= f.file_field :avatar, class: 'form-control' %>
   </div>
   <div class="source-wrapper">
-    <%  @source.each do |source| %>
-      <span><%= source.name%></span>
-      <%if @user.sourse_mass_id.include?(source.id.to_s) %>
-      <%= f.check_box( :sourse_mass_id, {:multiple => true , :checked => true}, source.id , nil) %>
-      <% else %>
-      <%= f.check_box( :sourse_mass_id, {:multiple => true}, source.id , nil) %>
+    <% categories = Category.all %>
+    <ul class="accordion" data-accordion="open">
+    <% categories.each do |category| %>
+       <% if  category.sources.present? %>
+        <li>
+          <div class="accordion-header">  <%= category.name%> </div>
+          <div class="accordion-body">
+            <%  category.sources.each do |source| %>
+              <span><%= source.name%></span>
+              <%if @user.sourse_mass_id.include?(source.id.to_s) %>
+                <%= f.check_box( :sourse_mass_id, {:multiple => true , :checked => true}, source.id , nil) %>
+              <% else %>
+                <%= f.check_box( :sourse_mass_id, {:multiple => true}, source.id , nil) %>
+              <% end %>
+            <% end %>
+           </div>
+         </li>
       <% end %>
     <% end %>
+    </ul>
   </div>
   <br>
   <div class="btn">
@@ -46,3 +58,27 @@
   </div>
 <% end %>
 <%= link_to 'назад', profile_user_path(current_user.id)%>
+
+<script type="text/javascript">
+var accordion = function () {
+  var data = $(".accordion").attr("data-accordion");
+
+  $(".accordion-header").on("click", function(){
+    if (data === "close") {
+      $(".accordion-body").slideUp();
+      if ($(this).hasClass("active")) {
+        $(this).toggleClass("active");
+      }else {
+        $(".accordion-header").removeClass("active");
+        $(this).toggleClass("active");
+      }
+    }
+    else {
+      $(this).toggleClass("active");
+    }
+    $(this).next(".accordion-body").not(".animated").slideToggle();
+  });
+}
+
+accordion();
+</script>

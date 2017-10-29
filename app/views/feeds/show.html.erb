@@ -2,20 +2,28 @@
 <div class="row">
 
   <div class="col-md-8">
-    <img src="<%= @feed.image %>" alt="" class="show-news-img">
-
+    <div class="show-news-img-wrap">
+      <img src="<%= @feed.image %>" alt="" class="show-news-img">
+    </div>
     <h4><%= @feed.title %></h4>
-    <%= @feed.data_time.to_date.strftime("%d-%m-%Y") %> <i class="material-icons">remove_red_eye</i>33
+    <p class="view_and_comment">
+    <span><i class="fa fa-calendar" aria-hidden="true"></i> <%= @feed.data_time.to_date.strftime("%d-%m-%Y") %></span>
+    <span><i class="fa fa-eye" aria-hidden="true"> </i> <%= @feed.view_count %></span>
+    <span><i class="fa fa-commenting" aria-hidden="true"></i> <%= @feed.comments.size %></span>
     <span class="favorite">
       <% if user_signed_in? %>
         <%@user = User.find(current_user.id)%>
           <%if @user.feeds.ids.include?(@feed.id) %>
-            <a href="<%= favorite_feed_path(@feed.id) %>" title="удалить из избранного"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a class="favorite" href="<%= favorite_feed_path(@feed.id) %>" title="Удалить из избранного">
+              <i class="fa fa-star" aria-hidden="true"></i> Удалить из избранного</a>
           <% else %>
-            <a href="<%= favorite_feed_path(@feed.id) %>" title="добавить в избранное"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a class="favorite" href="<%= favorite_feed_path(@feed.id) %>" title="Добавить в избранное">
+              <i class="fa fa-star-o" aria-hidden="true"></i> Добавить в избранное</a>
           <% end %>
         <% end %>
     </span>
+    </p>
+
     <%= @feed.full_description.html_safe%>
     <%= render 'shared/comment'%>
   </div>

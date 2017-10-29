@@ -34,11 +34,14 @@
     <%= f.label "Url картинки " %>
     <%= f.text_field :image_url, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :category_ids, "Categories" %><br />
-    <%= f.collection_select :category_ids, Category.order(:name), :id, :name, {}, {multiple: true} %>
-  </div>
-
+  <%-  Category.order(:name).each do |category| %>
+    <div class="form-group">
+      <%- checked = source.categories.map(&:id).include?(category.id) %>
+      <%= f.check_box( :category_ids, {:multiple => true}, category.id, nil) %>
+      <span><%=  category.name %></span>
+      <br />
+    </div>
+  <% end %>
   <div class="btn">
     <%= f.submit "Создать ресурс" %>
   </div>

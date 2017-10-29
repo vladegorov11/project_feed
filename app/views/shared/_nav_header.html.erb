@@ -1,0 +1,59 @@
+<div class="container-fluid header">
+   <div class="row">
+       <div class="col-md-12 nav-nemu">
+            <div class="logo pull-left">
+               <img src="https://dec-edu.com/uploads/images/news-logo.png">
+             <!--<span>TopNewsLogo</span> -->
+            </div>
+            <div class="top-bar ">
+             <ul class=" top-bar-items">
+               <li><%= link_to 'Все новости', feeds_path %></li>
+               <li><%= link_to 'События', events_path%></li>
+               <li><a href="<%=my_feed_feeds_path %>">Моя лента</a></li>
+               <li>
+                 <% if user_signed_in? %>
+                 <p class="badge-top">
+                 <%= new_feed_count(current_user) %>
+               </p>
+                 <% end %>
+               </li>
+               <li><a href=""><i class="fa fa-paper-plane" aria-hidden="true"></i></a></li>
+                       <ul class="social-link-top">
+                       <li><a href=""><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+                       <li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                       <li><a href=""><i class="fa fa-google-plus-official" aria-hidden="true"></i></a></li>
+                       </ul>
+
+             </ul>
+
+             <div class="rates pull-right">
+               <ul class="top-bar-items">
+                 <% rates = Rate.last(3)
+                    rates.each do |rate|  %>
+                       <li><span><%= rate.title %>  <%= eval(sprintf("%8.3f",rate.rate))  %></span></li>
+                 <% end %>
+                </ul>
+             </div>
+            </div>
+       </div>
+     </div>
+   </div>
+
+
+
+
+
+
+<script type="text/javascript">
+$( "#filter" ).click(function() {
+  var height = $( "#filter_container" ).css( "height" );
+  if (height == '100px') {
+      $( "#filter_container" ).css({"height" : "0px", "display" : "none"});
+  }else {
+
+      $( "#filter_container" ).css({"height":  "100px", "display" : "block"});
+
+  }
+});
+
+</script>

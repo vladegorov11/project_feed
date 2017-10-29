@@ -1,0 +1,8 @@
+<div class="profile_comment">
+    <h4>Ваши комментарии:</h4>
+     <% @user.comments.each do |user_comment| %>
+        <%= link_to 'Show', feed_url(user_comment.feed_id) %>
+        <span>имя:</span><%=user_comment.author%><br>
+        <span>комментарий:</span>  <%=user_comment.body%>   <br> <br>
+     <%end%>
+</div>

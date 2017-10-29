@@ -1,0 +1,30 @@
+<div class="profile_icon">
+  <%= image_tag @user.avatar.url(:thumb), :style => "width: 100px;height: 100px; border-radius:55px;"  if @user.avatar? %><br>
+  <h3><%= @user.first_name %> <%= @user.last_name %></h3>
+  <%= @user.email %><br>
+  <div class="user_profile_btn">
+    <a href="<%= profile_setup_user_path(current_user.id) %>" class="user_settings"><i class="fa fa-cog" aria-hidden="true"></i> Настройки</a>
+    <a href="<%= %>" class="user_sign_out"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+  </div>
+</div>
+
+
+    <div class="user_source">
+      <h3>Ваши источники:</h3>
+      <% @source = Source.where(" id IN (?)", @user.sourse_mass_id) %>
+        <ul>
+          <% @source.each do |source| %>
+            <li><i class="fa fa-angle-right" aria-hidden="true"></i> <%= source.name%></li>
+          <% end %>
+        </ul>
+    </div>
+
+<% @categories.each do |category|%>
+<%= category.name%><br><%= category.view_count %> просмотров
+  <div class="progress progress-line" style="width:100%;">
+    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+    style="width: <%=(category.view_count * 100)/ @all_category_count %>%;">
+    <%=(category.view_count * 100)/ @all_category_count %>%
+    </div>
+  </div>
+<% end %>

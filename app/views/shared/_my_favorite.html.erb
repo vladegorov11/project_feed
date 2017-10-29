@@ -1,0 +1,16 @@
+<div class="">
+    <div class="favorite_feed">
+      <h4>Избранное:</h4>
+      <div class="row">
+         <% @user.feeds.each do |favorite| %>
+               <div class="col-md-3 favorite_feed_item">
+                  <img src="<%= favorite.image%>" alt="" >
+               </div>
+               <div class="col-md-9 favorite_feed_title favorite_feed_item">
+                 <p><%= link_to favorite.title, feed_path(favorite.id) if favorite.image?%></p>
+                 <%= favorite.description.slice(0..150)%>
+               </div>
+         <%end%>
+       </div>
+    </div>
+</div>

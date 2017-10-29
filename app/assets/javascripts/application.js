@@ -24,3 +24,8 @@ $(document).ready(function(){
                      $(this).toggleClass("switchOn");
                 });
            });
+
+
+$( "#filter" ).click(function() {
+  $( "#filtercontainer" ).toggleClass( "filteractive" );
+});
