@@ -1,4 +1,4 @@
-<%= form_with(model: category, local: true) do |f| %>
+<%= form_with(model: [:admin, category] , local: true) do |f| %>
   <% if category.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(categorie.errors.count, "error") %> prohibited this source from being saved:</h2>

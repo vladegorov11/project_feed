@@ -2,9 +2,8 @@
 
 <div class="news-size"><%= "Количество новостей на сайте: #{@size} "%></div>
 <%= link_to 'Загрузить новые новости', update_news_feeds_path, data: { confirm: 'Are you sure?' } %>|
-<%= link_to 'Список ресурсов', sources_path %>|
-<%= link_to 'Список категорий', categories_path %>
-<%= link_to 'админ панель', admin_categories_path%>
+<%= link_to 'админ панель', admin_path%>
+
 
 
 <!-- <%= render 'search'%> -->

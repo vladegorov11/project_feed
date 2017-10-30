@@ -320,7 +320,7 @@ border-bottom: 1px dotted #9F1D35;
 .read a  {
 	border-radius: 60px;
 	font-size: 32px;
-	background: rgba(0, 170, 186, 1);
+	background: #e8a427;
 	display: block;
 	padding-left: 40%;
 	color: #ffffff;
@@ -646,6 +646,13 @@ border-bottom: 1px dotted #9F1D35;
 .favorite_feed_item {
   margin: 10px 0 ;
 }
+.admin-link {
+  height: 80%;
+  display: block;
+  width: 100%;
+  padding: 10px 5px;
+  font-size: 14px;
+}
 // футтер ----------------------------
 .footer  {
   margin-top: 30px;
@@ -653,4 +660,46 @@ border-bottom: 1px dotted #9F1D35;
   height: 100px;
   background-color: #000;
 
+}
+.shadow {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.dashboard-bar {
+  text-align: center;
+  background-color: #fff;
+  width: 90%;
+}
+.dashboard-bar img {
+  width: 100px;
+  height: 100px;
+}
+.admin-dashboard {
+  margin-top: 20px;
+}
+.dashboard-bar-list {
+  padding-left: 0;
+  text-align: left;
+  list-style-type: none;
+}
+.dashboard-bar-list li a {
+  padding: 10px 10px 10px 20px;
+  display: block;
+  text-decoration: none;
+  color: #000;
+}
+.dashboard-bar-list li {
+  border-top: 1px solid #f1f1f1;
+}
+.dashboard-bar-list li a:hover {
+  background-color: #e8a427;
+  color: #fff;
+}
+.dashboard-bar-list li a:hover:after{
+	content: '\02332';
+	font-size: 14px;
+	color: #fff;
+	float: right;
+}
+.dashboard-content {
+  background-color: #fff;
 }

@@ -1,0 +1,48 @@
+<%= form_with(model: [:admin, source], local: true) do |f| %>
+  <% if source.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(source.errors.count, "error") %> prohibited this source from being saved:</h2>
+
+      <ul>
+      <% source.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label 'Название ресурса' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Логин от ресурса" %>
+    <%= f.text_field :login, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Пароль от ресурса" %>
+    <%= f.text_field :password, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Url ресурса " %>
+    <%= f.text_field :api_url, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Url описания " %>
+    <%= f.text_field :description_url, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Url картинки " %>
+    <%= f.text_field :image_url, class: 'form-control' %>
+  </div>
+  <%-  Category.order(:name).each do |category| %>
+    <div class="form-group">
+      <%- checked = source.categories.map(&:id).include?(category.id) %>
+      <%= f.check_box( :category_ids, {:multiple => true}, category.id, nil) %>
+      <span><%=  category.name %></span>
+      <br />
+    </div>
+  <% end %>
+  <div class="btn">
+    <%= f.submit "Создать ресурс" %>
+  </div>
+<% end %>

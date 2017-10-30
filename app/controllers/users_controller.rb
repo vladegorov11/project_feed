@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:update, :profile_setup, :show, :profile]
+  
   def profile
       @categories = Category.order("view_count DESC")
       @all_category_count = @categories.inject(0){|sum,x| sum + x.view_count }
@@ -36,4 +37,6 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:first_name, :last_name, :nick_name, :avatar, :sourse_mass_id => [])
     end
+
+
 end

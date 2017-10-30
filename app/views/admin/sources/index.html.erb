@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ресурсы</h1>
+
+<table>
+  <thead>
+    <tr class="index_table">
+      <td>Название ресурса</td>
+      <td>Логин ресурса</td>
+      <td>Пароль ресурса</td>
+      <td>Url ресурса </td>
+      <td>Url изображения </td>
+      <td>Url описания </td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sources.each do |source| %>
+      <tr class="index_table">
+        <td><%= source.name %></td>
+        <td><%= source.login %></td>
+        <td><%= source.password %></td>
+        <td><%= source.api_url %></td>
+        <td><%= source.image_url %></td>
+        <td><%= source.description_url %></td>
+        <td>
+          <%source.categories.each do |cetegory| %>
+            <%= cetegory.name %>
+          <% end %>
+        </td>
+        <td><%= link_to 'Show', admin_source_path(source) %></td>
+        <td><%= link_to 'Edit', edit_admin_source_path(source) %></td>
+        <td><%= link_to 'Destroy', admin_source_path(source), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Source', new_admin_source_path %> | <%= link_to 'Back To Feeds', feeds_path %>

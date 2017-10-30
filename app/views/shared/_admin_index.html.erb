@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-6">
+    <% @categories.each do |category|%>
+    <%= category.name%><br><%= category.view_count %> просмотров
+      <div class="progress progress-line" style="width:100%;">
+        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+        style="width: <%=(category.view_count * 100)/ @all_category_count %>%;">
+        <%=(category.view_count * 100)/ @all_category_count %>%
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <%= User.online.size %> пользователей онлайн
+  </div>
+</div>

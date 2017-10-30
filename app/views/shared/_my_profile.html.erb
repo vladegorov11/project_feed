@@ -5,6 +5,11 @@
   <div class="user_profile_btn">
     <a href="<%= profile_setup_user_path(current_user.id) %>" class="user_settings"><i class="fa fa-cog" aria-hidden="true"></i> Настройки</a>
     <a href="<%= %>" class="user_sign_out"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+    <% if @user.admin%>
+    <div class="">
+      <a href="<%= admin_path%>" class="admin-link">Панель администратора</a>
+    </div>
+    <% end %>
   </div>
 </div>
 
@@ -18,13 +23,3 @@
           <% end %>
         </ul>
     </div>
-
-<% @categories.each do |category|%>
-<%= category.name%><br><%= category.view_count %> просмотров
-  <div class="progress progress-line" style="width:100%;">
-    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-    style="width: <%=(category.view_count * 100)/ @all_category_count %>%;">
-    <%=(category.view_count * 100)/ @all_category_count %>%
-    </div>
-  </div>
-<% end %>

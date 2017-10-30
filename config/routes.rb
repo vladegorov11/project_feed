@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+
   namespace :admin do
+   get '', to: 'dashboard#index', as: '/' 
    resources :categories
+   resources :sources
   end
+
   devise_for :users
   root 'feeds#index'
   resources :users do
@@ -28,7 +32,5 @@ Rails.application.routes.draw do
         get 'favorite'
       end
   end
-  resources :sources
   resources :events
-  resources :categories
 end

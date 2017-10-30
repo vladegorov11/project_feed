@@ -7,4 +7,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable, :validatable
   serialize :sourse_mass_id, Array
+
+  
 end
