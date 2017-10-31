@@ -1,26 +1,21 @@
 <p id="notice"><%= notice %></p>
-
-<h1>categories</h1>
-
-<table>
+<h3>Категории</h3>
+<%= link_to "Добавить категорию" , new_admin_category_path, class: "link-to-class"  %>
+<table class="table table-striped">
   <thead>
-    <tr class="index_table">
+    <tr class="">
       <td>Название категории</td>
     </tr>
   </thead>
 
   <tbody>
     <% @categories.each do |category| %>
-      <tr class="index_table">
+      <tr class="">
         <td><%= category.name %></td>
-        <td><%= link_to 'Show', admin_category_path(category) %></td>
-        <td><%= link_to 'Edit', edit_admin_category_path(category) %></td>
-        <td><%= link_to 'Destroy', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Просмотр', admin_category_path(category) %></td>
+        <td><%= link_to 'Редактировать', edit_admin_category_path(category) %></td>
+        <td><%= link_to 'Удалить', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New category', new_admin_category_path %> | <%= link_to 'Back To Feeds', feeds_path %>

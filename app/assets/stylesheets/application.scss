@@ -27,7 +27,12 @@ body {
    font-size: 14px;
    background: #f1f1f1;
 }
-
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
 /* старое ______---=------------------- */
 .show-news-img {
   display: block;
@@ -665,6 +670,7 @@ border-bottom: 1px dotted #9F1D35;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 .dashboard-bar {
+  margin-left: 5px;
   text-align: center;
   background-color: #fff;
   width: 90%;
@@ -702,4 +708,45 @@ border-bottom: 1px dotted #9F1D35;
 }
 .dashboard-content {
   background-color: #fff;
+  padding: 20px 15px;
+  margin-right: 5px;
+}
+
+.user-online {
+  margin-left: 30%;
+  text-align: center;
+  padding: 30px 20px 10px 20px;
+  margin-bottom: 20px;
+  width: 50%;
+  height: auto;
+  font-size: 16px;
+}
+.user-online p{
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.user-online i{
+  position: relative;
+  top: -75px;
+  left: 10px;
+	font-size: 44px;
+	color: #fff;
+	float: right;
+}
+.link-to-class {
+  font-size: 14px;
+  color: #000;
+  font-weight: 600;
+}
+.link-to-class:hover {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 600;
+}
+.link-to-class::before {
+  content: '\02795';
+	font-size: 14px;
+	color: #000;
 }

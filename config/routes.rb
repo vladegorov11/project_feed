@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-   get '', to: 'dashboard#index', as: '/' 
+   get '', to: 'dashboard#index', as: '/'
    resources :categories
    resources :sources
+   resources :feeds, except: [:show, :index] 
   end
 
   devise_for :users
@@ -21,12 +22,11 @@ Rails.application.routes.draw do
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :feeds do
+  resources :feeds, only: [:show, :index] do
       resources :comments
       collection do
         get 'my_feed'
         get 'search'
-        get 'update_news'
       end
       member do
         get 'favorite'

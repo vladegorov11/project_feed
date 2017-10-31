@@ -1,14 +1,12 @@
 <p id="notice"><%= notice %></p>
 <div class="row">
-
   <div class="col-md-8">
-
-
     <h4><%= @event.title %></h4>
-    <%= @event.city%>
-    <%= @event.start_time.to_date.strftime("%d-%m-%Y") %>
-    <%= @event.end_time.to_date.strftime("%d-%m-%Y") %>
-    <i class="material-icons">remove_red_eye</i>33
+    <p>Город: <%= @event.city["city"]%></p>
+    <p>Страна: <%= @event.city["country"]%></p>
+    <p>Улица: <%= @event.city["street"]%></p>
+    <p>Время начала: <%= @event.start_time.to_date.strftime("%I:%M %d-%m-%Y") %></p>
+    <p>Время окончания: <%= @event.end_time.to_date.strftime("%I:%M %d-%m-%Y")%></p>
     <%= @event.description%>
   </div>
 </div>

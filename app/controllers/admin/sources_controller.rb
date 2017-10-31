@@ -1,6 +1,6 @@
 class Admin::SourcesController < ApplicationController
   before_action :set_source, only: [:show, :edit, :update, :destroy]
-  
+  layout 'admin.html.erb'
   def index
     @sources = Source.all
   end

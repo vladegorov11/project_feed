@@ -18,8 +18,12 @@
             </div>
                <%= link_to feed.title, feed %>
                <br><%= social_share_button_tag( feed.title ) %>
-               <%= link_to 'Edit', edit_feed_path(feed) %> |
-               <%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %>
+               <%if user_signed_in? %>
+                 <% if current_user.admin %>
+                   <%= link_to 'Редактировать ', edit_admin_feed_path(feed) %> |
+                   <%= link_to 'Удалить', admin_feed_path(feed), method: :delete, data: { confirm: 'Are you sure?' } %>
+                 <% end %>
+               <% end %>
         </div>
 
     <% end %>

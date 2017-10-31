@@ -12,7 +12,7 @@
       </div>
       <p>
         <%= event.city%>
-      <%= event.description.html_safe.slice(1..100)  %>
+      <%= event.description.html_safe.slice(1..100)%>
       </p>
         <%= social_share_button_tag( event.title ) %>
       <%= link_to 'Show', event %> |

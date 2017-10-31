@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProjectFeed</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  </head>
+
+  <body>
+    <%= render 'shared/nav_header'%>
+    <%= render 'shared/header_other'%>
+
+    <div class="container-fluid">
+      <div class="row admin-dashboard">
+        <div class="col-md-3">
+          <%= render 'shared/dashboard_nav_bar'%>
+       </div>
+       <div class="col-md-9">
+          <%= yield %>
+       </div>
+     </div>
+    </div>
+    <%= render 'shared/footer'%>
+  </body>
+</html>

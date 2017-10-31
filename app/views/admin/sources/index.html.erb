@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Ресурсы</h1>
+<h3>Ресурсы</h3>
 
-<table>
+<%= link_to " Довавить ресурс" , new_admin_source_path, class: "link-to-class"  %>
+
+<table class="table table-striped">
   <thead>
-    <tr class="index_table">
+    <tr class="">
       <td>Название ресурса</td>
-      <td>Логин ресурса</td>
-      <td>Пароль ресурса</td>
       <td>Url ресурса </td>
       <td>Url изображения </td>
       <td>Url описания </td>
@@ -16,10 +16,8 @@
 
   <tbody>
     <% @sources.each do |source| %>
-      <tr class="index_table">
+      <tr class="">
         <td><%= source.name %></td>
-        <td><%= source.login %></td>
-        <td><%= source.password %></td>
         <td><%= source.api_url %></td>
         <td><%= source.image_url %></td>
         <td><%= source.description_url %></td>
@@ -28,14 +26,14 @@
             <%= cetegory.name %>
           <% end %>
         </td>
-        <td><%= link_to 'Show', admin_source_path(source) %></td>
-        <td><%= link_to 'Edit', edit_admin_source_path(source) %></td>
-        <td><%= link_to 'Destroy', admin_source_path(source), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Просмотр', admin_source_path(source) %>
+          <%= link_to 'Редактировать', edit_admin_source_path(source) %>
+          <%= link_to 'Удалить', admin_source_path(source), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Source', new_admin_source_path %> | <%= link_to 'Back To Feeds', feeds_path %>
