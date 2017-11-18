@@ -1,6 +1,6 @@
-class Admin::SourcesController < ApplicationController
+class Admin::SourcesController < Admin::AdminController
   before_action :set_source, only: [:show, :edit, :update, :destroy]
-  layout 'admin.html.erb'
+  
   def index
     @sources = Source.all
   end
@@ -20,10 +20,10 @@ class Admin::SourcesController < ApplicationController
 
     respond_to do |format|
       if @source.save
-        format.html { redirect_to admin_source_path(@source), notice: 'Source was successfully created.' }
+        format.html { redirect_to admin_source_path(@source), success: 'Ресурс успешно создан.' }
         format.json { render :show, status: :created, location: @source }
       else
-        format.html { render :new }
+        format.html { render :new, danger: 'Ресурс не созданю '  }
         format.json { render json: @source.errors, status: :unprocessable_entity }
       end
     end
@@ -32,10 +32,10 @@ class Admin::SourcesController < ApplicationController
   def update
     respond_to do |format|
       if @source.update(source_params)
-        format.html { redirect_to admin_source_path(@source), notice: 'Source was successfully updated.' }
+        format.html { redirect_to admin_source_path(@source), success: 'Ресурс успешно обновлен.' }
         format.json { render :show, status: :ok, location: @source }
       else
-        format.html { render :edit }
+        format.html { render :edit, danger: 'Ресурс не обновлен.' }
         format.json { render json: @source.errors, status: :unprocessable_entity }
       end
     end
@@ -45,7 +45,7 @@ class Admin::SourcesController < ApplicationController
   def destroy
     @source.destroy
     respond_to do |format|
-      format.html { redirect_to admin_sources_path, notice: 'Source was successfully destroyed.' }
+      format.html { redirect_to admin_sources_path, success: 'Ресурс успешно удален.' }
       format.json { head :no_content }
     end
   end

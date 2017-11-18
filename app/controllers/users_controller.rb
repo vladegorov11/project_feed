@@ -1,7 +1,8 @@
+require 'twitter'
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:update, :profile_setup, :show, :profile]
-  
+
   def profile
       @categories = Category.order("view_count DESC")
       @all_category_count = @categories.inject(0){|sum,x| sum + x.view_count }
@@ -19,13 +20,19 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to profile_user_url, notice: 'Source was successfully updated.' }
+        format.html { redirect_to profile_user_url, success: 'Настройки профайла успешно обновлены' }
         format.json { render :profile, status: :ok, location: @user }
       else
         format.html { render :profile_setup }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+
+  def get_twitter_user
+   render text: request.env['omniauth.auth'].to_yaml
+   redirect_to root_url
   end
 
   private

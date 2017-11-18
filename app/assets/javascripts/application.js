@@ -14,16 +14,11 @@
 //= require jquery_ujs
 //= require rails-ujs
 //= require turbolinks
+//= require trix
 //= require_tree .
 //= require bootstrap-sprockets
 //= require social-share-button
 
-
-$(document).ready(function(){
-                $('.switch').click(function(){
-                     $(this).toggleClass("switchOn");
-                });
-           });
 
 
 $( "#filter" ).click(function() {

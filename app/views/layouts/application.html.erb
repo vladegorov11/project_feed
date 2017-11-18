@@ -9,14 +9,32 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
-
   <body>
-
-
-    <%= render 'shared/nav_header'%>
-    <%= render 'shared/header_other'%>
+    <%-
+      content_size  = 12
+      content_size  = 10 if twitter_token_present?
+    %>
     <div class="container-fluid">
-         <%= yield %>
+      <div class="row">
+          <div class="col-md-<%= content_size %>" style="padding: 0 ; ">
+            <%= render 'shared/nav_header'%>
+            <%= render 'shared/header_other'%>
+            <div class="container-fluid">
+              <div class="row">
+                 <div class="col-md-12">
+                    <% flash.each do |name, message|%>
+                       <div class="alert alert-<%= name %>">
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                         <%= message %>
+                       </div>
+                    <% end %>
+                 </div>
+              </div>
+                 <%= yield %>
+            </div>
+          </div>
+          <%= render 'shared/twitter_list' if twitter_token_present? %>
+      </div>
     </div>
     <%= render 'shared/footer'%>
   </body>

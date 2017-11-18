@@ -1,0 +1,27 @@
+<% if user_signed_in?%>
+<div class="col-md-2" style="padding: 0;">
+    <div class="twitter-content shadow">
+      <% current_user.tweets.each do |tweet|%>
+        <div class="twitter-item">
+          <img src="<%= tweet.profile_image_url %>" style="border-radius: 40px" alt="">
+          <a href="<%= tweet.user_url %>">@<%= tweet.user_screen_name %></a>
+          <a href="<%= tweet.url %>">
+            <p><%= tweet.full_text %></p>
+          </a>
+        </div>
+      <%end %>
+    </div>
+</div>
+<% end %>
+
+<!-- t.string "text"
+t.string "url"
+t.string "full_text"
+t.string "user_name"
+t.string "tweet_id"
+t.string "user_url"
+t.string "user_screen_name"
+t.datetime "created_at", null: false
+t.datetime "updated_at", null: false
+t.integer "user_id"
+t.string "profile_image_url" -->

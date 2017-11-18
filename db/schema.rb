@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171029164355) do
+ActiveRecord::Schema.define(version: 20171116231753) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -91,6 +91,23 @@ ActiveRecord::Schema.define(version: 20171029164355) do
     t.datetime "updated_at", null: false
     t.string "description_url"
     t.string "image_url"
+    t.boolean "default_source", default: false
+  end
+
+  create_table "tweets", force: :cascade do |t|
+    t.string "text"
+    t.string "url"
+    t.string "full_text"
+    t.string "user_name"
+    t.string "tweet_id"
+    t.string "user_url"
+    t.string "user_screen_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "profile_image_url"
+    t.index ["tweet_id"], name: "index_tweets_on_tweet_id"
+    t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -112,6 +129,10 @@ ActiveRecord::Schema.define(version: 20171029164355) do
     t.string "sourse_mass_id"
     t.datetime "last_visit"
     t.boolean "admin", default: false
+    t.boolean "create_feed", default: false
+    t.boolean "ban", default: false
+    t.string "twitter_token"
+    t.string "twitter_token_secret"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

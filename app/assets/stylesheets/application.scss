@@ -10,13 +10,19 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require trix
  *= require_tree .
  *= require_self
  */
 @import "social-share-button";
 @import "bootstrap";
 @import "font-awesome";
-
+.field_with_errors input{
+   border: 2px solid #f5c6cb;
+}
+.field_with_errors label{
+   color: #f5c6cb;
+}
 html {
    height: 100%;
    margin: 0;
@@ -140,7 +146,35 @@ p img {
   top: 0;
   z-index: 2;
 }
+.caterories-bar {
+  background-color: #fff;
+  margin-top: 10px;
+}
+.twitter-content {
+  padding-top: 40px;
+  height: 100vh;
+  width: 15%;
+  background-color: #fff;
+  overflow: scroll;
+  display: block;
+  position: fixed;
+  top: 20px;
+  right: 0;
+}
+.twitter-content::-webkit-scrollbar { width: 0; }
+.twitter-item {
+  //border-bottom: 1px solid #e8a427;
+  padding: 10px;
+}
+.twitter-item:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: #e8a427;
+    opacity: 0.7;
 
+}
 // меню с поиском и фильтром =================
 .filter-and-search {
   width: 100%;
@@ -183,8 +217,14 @@ input:focus {
   padding-top: 10px;
 
 }
+.user_logo_wrap {
+  padding: 0;
+}
 .user_menu {
   margin-top: 10px;
+}
+.user_menu ul {
+  padding-left: 20px;
 }
 .user_menu li  {
   list-style-type: none;
@@ -371,6 +411,17 @@ border-bottom: 1px dotted #9F1D35;
   left: 90%;
   top: -24px;
 }
+.textarea-form{
+  width: 100%;
+
+}
+.formatted_content {
+  background-color: #fff;
+}
+.editor {
+  height: 100%;;
+  overflow: scroll;
+}
 /* блок комментариев---------------- */
 .comment-wrapper {
   background: #dcdcdc;
@@ -381,7 +432,7 @@ border-bottom: 1px dotted #9F1D35;
   width: 70px;
   height: 70px;
 }
-.text-area-comment {
+.text-area-comment, .text-area-form  {
   margin-top: 20px;
 	padding: 30px;
   width: 100%;
@@ -389,6 +440,9 @@ border-bottom: 1px dotted #9F1D35;
 	border-radius: 5px;
 	border: 1px solid #c3c3c3;
 	resize: none;
+}
+.text-area-form {
+    width: 40%;
 }
  .text-area-comment:focus {
    outline:none;
@@ -572,6 +626,7 @@ border-bottom: 1px dotted #9F1D35;
   width: 80%;
 }
 .user_right_bar {
+  min-height: 100%;
   height: auto;
   padding: 20px 20px 0 20px ;
 }
@@ -658,13 +713,15 @@ border-bottom: 1px dotted #9F1D35;
   padding: 10px 5px;
   font-size: 14px;
 }
+.user_list li {
+  display: inline-block;
+}
 // футтер ----------------------------
 .footer  {
   margin-top: 30px;
   width: 100%;
   height: 100px;
   background-color: #000;
-
 }
 .shadow {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
@@ -680,6 +737,7 @@ border-bottom: 1px dotted #9F1D35;
   height: 100px;
 }
 .admin-dashboard {
+  margin: 0;
   margin-top: 20px;
 }
 .dashboard-bar-list {
@@ -749,4 +807,22 @@ border-bottom: 1px dotted #9F1D35;
   content: '\02795';
 	font-size: 14px;
 	color: #000;
+}
+// events ===================
+.events-info p  {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+}
+.item-link {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+}
+.item-link:hover {
+  color: #e8a427;
+}
+.item-link-wrapper {
+  padding: 10px 0 ;
+  border-bottom: 1px solid #e8a427;
 }

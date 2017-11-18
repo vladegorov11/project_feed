@@ -6,18 +6,18 @@ class FeedRss
 
   def get_rss
     rss_results = []
-    rss_sourse = Source.all
-      rss_sourse.each do |source_url|
-          @source_url = source_url
-          rss = RSS::Parser.parse(open(@source_url.api_url).read, false).items[0..1]
-          puts source_url.api_url
-           rss.each do |result|
-             url = result.link
-             html = open(url)
-             doc = Nokogiri::HTML(html)
-             description = doc.css(@source_url.description_url)
-             a = Formatter.super_format(result, @@conntent_type, description, @source_url)
-           end
+    rss_source = Source.where(["default_source = ? " , false ])
+      rss_source.each do |source_url|
+        @source_url = source_url
+        rss = RSS::Parser.parse(open(@source_url.api_url).read, false).items[0..1]
+        puts source_url.api_url
+         rss.each do |result|
+           url = result.link
+           html = open(url)
+           doc = Nokogiri::HTML(html)
+           description = doc.css(@source_url.description_url)
+           a = Formatter.super_format(result, @@conntent_type, description, @source_url)
+         end
       end
   end
 

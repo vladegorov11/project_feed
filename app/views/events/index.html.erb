@@ -1,28 +1,24 @@
-<p id="notice"><%= notice %></p>
 
-<div class="row">
+<div class="masonry container-fluid">
     <% @events.each do |event| %>
-    <div class="col-md-4" style="padding: 5px;" id="<%= event.id %>">
-      <div class="article-padding" >
-
-
-      <h3><%= link_to event.title, event %></h3>
-      <div class="link_and_time">
-        <small><p style=”margin-top:-10px”> <%= event.start_time.strftime("%I:%M %d-%m-%Y") %> | <a href=""><em>Адрес оригинала</em></a></a></p></small>
-      </div>
-      <p>
-        <%= event.city%>
-      <%= event.description.html_safe.slice(1..100)%>
-      </p>
-        <%= social_share_button_tag( event.title ) %>
-      <%= link_to 'Show', event %> |
-      <%= link_to 'Edit', edit_feed_path(event) %> |
-      <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </div>
-    </div>
+       <div class="item">
+           <div class="img-hover">
+           <span class="desc"><p style="padding:5px;"><%= strip_tags(event.description).slice(0..100) %>...</p></span>
+           <img src="https://d.wildapricot.net/images/newsblog/bigstock-events-7444309.jpg">
+            </div>
+            <div class="read">
+              <%= link_to "<i class='fa fa-angle-right' aria-hidden='true'></i>".html_safe, event %>
+            </div>
+            <%= link_to event.title, event, class: "item-link" %>
+            <div class="item-info events-info">
+              <p><i class="fa fa-calendar" aria-hidden="true"></i> Время начала: <%= event.start_time.to_date.strftime("%d-%m-%Y %I:%M") %></p>
+              <p><i class="fa fa-calendar" aria-hidden="true"></i> Время окончания: <%= event.end_time.to_date.strftime("%d-%m-%Y %I:%M")%></p>
+              <p>Город: <%= event.city["city"]%></p>
+              <p>Страна: <%= event.city["country"]%></p>
+              <p>Улица: <%= event.city["street"]%></p>
+            </div>
+            <%= link_to 'Удалить', event_path(event), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <br><%= social_share_button_tag( event.title ) %>
+        </div>
     <% end %>
-</div>
-
-<br>
-
-<%= link_to 'New Feed', new_event_path %>
+ </div>

@@ -13,7 +13,16 @@
   <body>
     <%= render 'shared/nav_header'%>
     <%= render 'shared/header_other'%>
-
+    <div class="row">
+       <div class="col-md-12">
+          <% flash.each do |name, message|%>
+             <div class="alert alert-<%=name%>">
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+               <%= message %>
+             </div>
+          <% end %>
+       </div>
+    </div>
     <div class="container-fluid">
       <div class="row admin-dashboard">
         <div class="col-md-3">

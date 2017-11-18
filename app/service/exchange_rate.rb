@@ -7,9 +7,8 @@ class ExchangeRate
      uri = URI.parse(escaped_address)
      response = Net::HTTP.get(uri)
      course = JSON.parse(response)
-     data = Formatter.new
-     data = data.super_format(course, @@conntent_type)
+     data = Formatter.super_format(course, @@conntent_type)
    end
 
-  
+
 end

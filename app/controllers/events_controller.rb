@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :search]
-  before_action :set_event, only: [:destroy, :show, :edit, :favorite]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_event, only: [:destroy, :show, :edit]
 
   def index
      @events = Event.all
@@ -14,6 +14,15 @@ class EventsController < ApplicationController
   def edit
 
   end
+
+  def destroy
+    @event.destroy
+    respond_to do |format|
+      format.html { redirect_to events_url, success: 'Событие успешно удалено' }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
     def set_event

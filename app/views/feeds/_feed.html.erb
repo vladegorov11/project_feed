@@ -1,0 +1,25 @@
+<div class="item">
+   <div class="img-hover">
+  <%strip_description = strip_tags(feed.description)%>
+   <span class="desc"><p style="padding:5px;"><%= strip_tags(feed.description).slice(0..100)  %>...</p></span>
+   <img src="<%= feed.image %>">
+    </div>
+    <div class="read">
+      <%= link_to "<i class='fa fa-angle-right' aria-hidden='true'></i>".html_safe, feed %>
+    </div>
+    <div class="item-link-wrapper">
+      <%= link_to feed.title, feed, class: "item-link" %>
+    </div>
+    <div class="item-info">
+      <span><i class="fa fa-commenting" aria-hidden="true"></i> <%= feed.comments.size %></span>
+      <span><i class="fa fa-eye" aria-hidden="true"></i> <%= feed.view_count%> </span>
+      <a href="<%= feed.link %>" class="item-link" style="font-weight:400;">Оригинал</a>
+      <p><i class="fa fa-calendar" aria-hidden="true"></i> <%= feed.data_time.strftime("%I:%M %d-%m-%Y") %></p>
+    </div>
+    <%= social_share_button_tag( feed.title ) %>
+    <!-- TODO  make admin? method in User model   -->
+    <%if user_signed_in? && current_user.admin? %>
+      <%= link_to 'Редактировать ', edit_admin_feed_path(feed) %> |
+      <%= link_to 'Удалить', admin_feed_path(feed), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+</div>

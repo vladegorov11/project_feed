@@ -29,8 +29,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem  'elasticsearch-model'
-gem  'elasticsearch-rails'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 #мои гемы
@@ -41,13 +41,16 @@ gem 'social-share-button'
 gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
 gem "koala"
-gem "times_wire", "~> 0.9.0"
 gem "font-awesome-rails"
-gem 'rubocop', '~> 0.50.0', require: false
 gem 'jbuilder', '~> 2.5'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'will_paginate', '~> 3.1.0'
 gem 'google_calendar'
+gem 'twitter', '~> 6.0'
+gem 'trix'
+gem 'open-weather'
+gem 'omniauth-twitter'
+#gem 'oauth', '~> 0.5.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

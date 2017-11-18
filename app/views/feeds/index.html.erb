@@ -1,5 +1,10 @@
-<p id="notice"><%= notice %></p>
 <section id='feeds'>
-  <%= render 'shared/feed_item' %>
+  <div class="masonry container-fluid">
+    <%= link_to 'новая новость', new_feed_path %>
+    <%= render partial: 'feed', collection: @feeds%>
+  </div>
 </section>
+
+
+
 <%= will_paginate @feeds %>

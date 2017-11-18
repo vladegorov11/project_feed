@@ -22,5 +22,11 @@
       <span>Новостей за 24 часа</span>
       <i class="fa fa-newspaper-o" aria-hidden="true"></i>
     </div>
+    <div class="user-online shadow" style="background-color: #9a59b5;">
+      <% a = Feed.where('created_at >= ? AND created_at < ?', Time.current.beginning_of_day, Time.current.beginning_of_day + 1.day)%>
+      <p><%= Feed.all.size %></p>
+      <span>Всего новостей в базе</span>
+      <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+    </div>
   </div>
 </div>

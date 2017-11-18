@@ -8,6 +8,7 @@ class Formatter
                 result = { start_time: event["start_time"],
                            description: event["description"],
                            title: event["name"],
+                           link: 'https://www.facebook.com/events/' + event["id"],
                            city: event["place"]["location"],
                            end_time: event["end_time"] }
                 Event.create(result)
@@ -46,6 +47,19 @@ class Formatter
                 Rate.create(result)
               end
           end
+      when 'tweets'
+        result = { text: data.text,
+                   url: data.url,
+                   full_text: data.full_text,
+                   user_name: data.user.name,
+                   tweet_id: data.id,
+                   user_url: data.user.url,
+                   user_screen_name: data.user.screen_name,
+                   user_id: source.id,
+                   profile_image_url: data.user.profile_image_url
+                   }
+        puts result
+        Tweet.create(result)
       end
    end
 end

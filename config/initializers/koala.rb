@@ -1,6 +1,12 @@
 Koala.configure do |config|
-  config.access_token = 'EAAB7Qz85cY4BAJ5Ch8r0teRpzZAI3CB7JQd58jbSaZAAk4s0smdmW14ZBww1ZALO44OOZBZAuajUApltnZAlh8i14WoxbjYGwiVk3LbMaHH5CWa8ZCNbPvLeZBtTlHTsesKKkiJ60lEVeNZAu76mKQ2hjX8JWwVWPuVKzj68jsVOmFRRGRn4kLj4CnEEGwj36GO4htZBEK6VNZB9EgZDZD'
-  config.app_access_token = '135528753754510|uof9fzq4rWE3_FwzRRyg8ieoNfA'
-  config.app_id = "135528753754510"
-  config.app_secret = "7aa6b07a64eaa6022e49684b6a5243d1"
+  config.access_token = 'EAACMa7AvkysBAOom0s0UKGzzeJg8rR1AhC6jibVPZCPl8qsavZCYZBZCXIKmMp96cn6P6tizhG1E2Y8RTShrVI3iwvivKpbjicT3sSYleJuMlDS7tAnF2HnxK0Bs0YZBGuREM7HpCnNvccxy5pZACGxGJqPPHmIAiFBPMEoyBkNW5B2ffRjPd2hmlWKTRypVJL1JRmHZAT85wZDZD'
+  config.app_access_token = '154394145297195|ryRxxyOyYkgW5hj_Q3wplY_rRME'
+  config.app_id = "154394145297195"
+  config.app_secret = "303223995ec44c3836d3ec9b328142df"
 end
+
+
+# config.access_token = 'EAAB7Qz85cY4BAJ5Ch8r0teRpzZAI3CB7JQd58jbSaZAAk4s0smdmW14ZBww1ZALO44OOZBZAuajUApltnZAlh8i14WoxbjYGwiVk3LbMaHH5CWa8ZCNbPvLeZBtTlHTsesKKkiJ60lEVeNZAu76mKQ2hjX8JWwVWPuVKzj68jsVOmFRRGRn4kLj4CnEEGwj36GO4htZBEK6VNZB9EgZDZD'
+# config.app_access_token = '135528753754510|uof9fzq4rWE3_FwzRRyg8ieoNfA'
+# config.app_id = "135528753754510"
+# config.app_secret = "7aa6b07a64eaa6022e49684b6a5243d1"

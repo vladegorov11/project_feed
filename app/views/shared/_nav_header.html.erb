@@ -9,7 +9,7 @@
              <ul class=" top-bar-items">
                <li><%= link_to 'Все новости', feeds_path %></li>
                <li><%= link_to 'События', events_path%></li>
-               <li><a href="<%=my_feed_feeds_path %>">Моя лента</a></li>
+               <li><a href="<%=my_feeds_feeds_path %>">Моя лента</a></li>
                <li>
                  <% if user_signed_in? %>
                  <p class="badge-top">
@@ -25,7 +25,6 @@
                        </ul>
 
              </ul>
-
              <div class="rates pull-right">
                <ul class="top-bar-items">
                  <% rates = Rate.last(3)

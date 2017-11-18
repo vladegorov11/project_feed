@@ -1,8 +1,7 @@
 <%= form_with(model: [:admin, source], local: true) do |f| %>
   <% if source.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(source.errors.count, "error") %> prohibited this source from being saved:</h2>
-
+    <div id="error_explanation" class="alert alert-danger">
+      <h3><%= pluralize(source.errors.count, "error") %> prohibited this source from being saved:</h3>
       <ul>
       <% source.errors.full_messages.each do |message| %>
         <li><%= message %></li>

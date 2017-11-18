@@ -8,4 +8,7 @@ class ApplicationRecord < ActiveRecord::Base
   def online?
     updated_at > ONLINE_PERIOD.ago
   end
+
+  
+
 end

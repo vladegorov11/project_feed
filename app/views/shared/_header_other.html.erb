@@ -7,16 +7,13 @@
             <input type="submit"   class="search-btn" value="">
         <% end %>
         <div class="filter-btn">
-          <a href="javascript:void(0);" id="filter"><i class="fa fa-filter" aria-hidden="true"></i> Фильтр</a>
-          <div id="filter_container" class="filter">
-               <%= render 'feeds/search'%>
-          </div>
+          <a href="javascript:void(0);" id="filter" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-filter" aria-hidden="true"></i> Фильтр</a>
         </div>
       </div>
     </div>
     <div class="col-md-3">
       <div class="filter-and-search">
-
+          <%= request.remote_ip %>
       </div>
     </div>
     <div class="col-md-3">
@@ -34,7 +31,7 @@
                <% end %>
              </ul>
            </div>
-           <div class="col-md-4">
+           <div class="col-md-4 user_logo_wrap">
              <%if user_signed_in? %>
                <div class=" user_logo ">
                  <a href="<%= profile_user_path(current_user.id)%>">
@@ -43,8 +40,13 @@
                </div>
             <% end %>
            </div>
+
         </div>
       </div>
     </div>
+    <div class="col-md-12">
+      <%= render 'shared/categories'%>
+    </div>
   </div>
 </div>
+<%= render 'shared/filter_window'%>

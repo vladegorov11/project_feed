@@ -9,8 +9,11 @@ class FacebookApi
     end
 
     def get_events
-         events = @graph.search('днепр', type: :event, limit: 10)
-          # events.each do |fb_event|
+         events = @graph.search('днепр', type: :event, limit: 1)
+          #  events.each do |fb_event|
+          #    puts fb_event
+          #    puts "======================================================="
+          #  end
           #      puts fb_event["place"]
                  data = Formatter.super_format(events, @@conntent_type)
                  #save = Writter.new
