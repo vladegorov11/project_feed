@@ -21,6 +21,8 @@
 
 
 
-$( "#filter" ).click(function() {
-  $( "#filtercontainer" ).toggleClass( "filteractive" );
-});
+// $( "#filter" ).click(function() {
+//   $( "#filtercontainer" ).toggleClass( "filteractive" );
+// });
+
+

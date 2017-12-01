@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    puts user_params[:sourse_mass_id]
     @comments = Comment.where(user_id: current_user.id)
     @comments.each do |comment|
       comment.update(author: user_params[:nick_name])

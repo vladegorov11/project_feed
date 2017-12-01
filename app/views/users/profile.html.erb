@@ -24,7 +24,10 @@
       <div class="tab-content">
         <div class="tab-pane active" id="tab-1">
           Смотрите твиты ваших друзей прямо у нас на сайте >> <%= link_to 'Twitter', '/auth/twitter' %>
-
+          <% if can? :create, current_user %>
+          <br>
+          <%= link_to 'новая новость', new_feed_path %>
+          <% end %>
         </div>
         <div class="tab-pane " id="tab-2">
           <%= render 'shared/my_comments'%>

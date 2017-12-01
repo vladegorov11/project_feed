@@ -1,0 +1,39 @@
+<div class="search_form">
+  <% @categories = Category.all %>
+    <%=form_for :filter, url: url_for( :controller => :feeds, :action => :index ), method: "Get", local: true do |f| %>
+        <%= f.text_field :title_search, class: 'search-input', placeholder: "Поиск" %>
+        <div class=" row filter-checkbox">
+          <% @categories.each do |category| %>
+            <div class="category-search">
+              <div class=" checkbox">
+                <label><%= f.check_box(  :category, {:multiple => true}, category.id , nil)%> <%=  category.name %></label>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="row">
+          <div class="col-md-6 filter-calendar-wrap">
+            <p>От:</p>
+            <%= f.text_field :start_date, id: "datepicker", class: "filter-calendar", placeholder: "Начальная дата"  %>
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+          </div>
+          <div class="col-md-6 filter-calendar-wrap">
+            <p>До:</p>
+            <%= f.text_field :end_date, id: "datepicker1", class: "filter-calendar", placeholder: "Конечная дата" %>
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="filter-submit">
+            <%= f.submit 'Поиск', class: 'btn'%>
+        </div>
+    <% end %>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    $("#datepicker").datepicker();
+    $("#datepicker1").datepicker();
+  });
+</script>
+
+<!-- f.date_field -->

@@ -1,4 +1,15 @@
-<div class="masonry container-fluid">
-<%= render partial: 'feed', :collection => @feeds %>
+
+<div class="row">
+  <div class="col-md-8 feeds-wrapper">
+    <section id='feeds'>
+      <%= render partial: 'feed', collection: @feeds%>
+    </section>
+  </div>
+  <div class="col-md-4 top-feed-wrap">
+    <%= render 'shared/top_feeds'%>
+  </div>
 </div>
+ <!-- </div> -->
+
+
 <%= will_paginate @feeds %>

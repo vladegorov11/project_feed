@@ -1,12 +1,16 @@
 require 'twitter'
 class FeedsController < ApplicationController
  before_action :authenticate_user!, except: [:index, :show, :search]
- before_action :set_feed, only: [:destroy, :show, :edit, :favorite]
+ before_action :set_feed, only: [:destroy, :show, :edit, :favorite, :update]
+ before_action :top_feeds, only: [:index, :my_feeds]
 
   def index
     @sourse = Source.all
-    @feeds  = Feed.order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+    @feeds = SearchFilter.new(params[:filter]).scope.current_page(params[:page]) if params[:filter]
+    @feeds = SearchFilter.new(params[:title_search]).scope.current_page(params[:page]) if params[:title_search]
+    @feeds  = Feed.current_page(params[:page]).order("created_at DESC") unless params[:filter]
     @caterories = Category.all
+    
   end
 
   def show
@@ -28,15 +32,6 @@ class FeedsController < ApplicationController
      add_or_destroy_favorite(@feed)
   end
 
-
-  def search
-      @feeds = Feed.search("#{params[:title_search]}").records.all.
-        paginate(:page => params[:page], :per_page => 20)  unless params[:title_search].blank?
-      # @feeds = Feed.order("created_at DESC")
-      # @feeds = @feeds.where("source_id = ?", params[:source_id] ) unless params[:source_id].blank?
-      #@sourse = Source.all
-  end
-
   def update_news
      get_rss
      respond_to do |format|
@@ -49,6 +44,7 @@ class FeedsController < ApplicationController
   end
 
   def create
+    #add_params_to_create_hash
     @feed = Feed.new(feed_params)
     respond_to do |format|
       if @feed.save
@@ -81,13 +77,18 @@ class FeedsController < ApplicationController
   end
   private
 
+  
+
+  def add_params_to_create_hash(create_params)
+    fix_params = {source_id: 3}
+    create_params.marge(fix_params)
+  end
+
   def set_feed
       @feed = Feed.find(params[:id])
   end
 
   def feed_params
-    time_now = Time.now
-    source = Source.where(["default_source = ? " , true ])
     params.require(:feed).permit(:title, :link, :data_time, :description, :full_description, :source_id, :image)
   end
 

@@ -8,5 +8,9 @@ class ApplicationController < ActionController::Base
   def user_activity
     current_user.try :touch
   end
+  
+  def top_feeds
+    @top_feeds = Feed.order("view_count DESC").first(10)
+  end
 
 end

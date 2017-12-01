@@ -1,15 +1,19 @@
 <div class="container-fluid header3">
   <div class="row">
     <div class="col-md-6">
-      <div class="filter-and-search">
-        <%= form_with url: search_feeds_path, method: "Get",html: { id: 'form-search' } , local: true  do |f| %>
-            <input type="text" class="search-input" name="title_search" placeholder="Поиск" required>
-            <input type="submit"   class="search-btn" value="">
-        <% end %>
-        <div class="filter-btn">
-          <a href="javascript:void(0);" id="filter" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-filter" aria-hidden="true"></i> Фильтр</a>
+
+        <div class="filter-and-search">
+          <%= form_with url: search_feeds_path, method: "Get",html: { id: 'form-search' } , local: true  do |f| %>
+              <input type="text" class="search-input" name="title_search" placeholder="Поиск" required>
+              <input type="submit"   class="search-btn" value="">
+          <% end %>
+          <% if(current_user) %>
+            <div class="filter-btn">
+              <a href="javascript:void(0);" id="filter" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-filter" aria-hidden="true"></i> Фильтр</a>
+            </div>
+            <%= render 'shared/filter_window'%>
+          <% end %>
         </div>
-      </div>
     </div>
     <div class="col-md-3">
       <div class="filter-and-search">
@@ -22,12 +26,12 @@
            <div class="col-md-8 user_menu">
              <ul>
                <%if user_signed_in? %>
-                <li><i class="fa fa-sign-out" aria-hidden="true"></i><%=link_to 'Выйти', destroy_user_session_path , method: :delete%></li>
-                <li><i class="fa fa-user" aria-hidden="true"></i><%=link_to ' Профайл', profile_user_path(current_user.id) %></li>
-                <li><i class="fa fa-cog" aria-hidden="true"></i><%=link_to ' Настройки', profile_setup_user_path(current_user.id)%></li>
+               <li><%=link_to '<i class="fa fa-sign-out" aria-hidden="true"> Выйти</i>'.html_safe, destroy_user_session_path , method: :delete%></li>
+               <li><%=link_to '<i class="fa fa-user" aria-hidden="true"> Профайл</i>'.html_safe, profile_user_path(current_user.id) %></li>
+               <li><%=link_to "<i class='fa fa-cog' aria-hidden='true'> Настройки</i>".html_safe, profile_setup_user_path(current_user.id)%></li>
                <% else %>
-                <li><i class="fa fa-sign-in" aria-hidden="true"></i><%=link_to ' Войти', new_user_session_path%></li>
-                <li><i class="fa fa-user-plus" aria-hidden="true"></i><%=link_to ' Регистрация', new_user_registration_path%></li>
+                <li><%=link_to '<i class="fa fa-sign-in" aria-hidden="true"> Войти</i>'.html_safe, new_user_session_path%></li>
+                <li><%=link_to '<i class="fa fa-user-plus" aria-hidden="true"> Регистрация</i>'.html_safe, new_user_registration_path%></li>
                <% end %>
              </ul>
            </div>
@@ -44,9 +48,8 @@
         </div>
       </div>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12 categories-list">
       <%= render 'shared/categories'%>
     </div>
   </div>
 </div>
-<%= render 'shared/filter_window'%>

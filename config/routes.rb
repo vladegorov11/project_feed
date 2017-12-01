@@ -1,4 +1,6 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq'
   match '/auth/twitter/callback', to: 'sessions#create', via: 'get'
   match '/auth/failure', to: redirect('/'), via: 'get'
   namespace :admin do
@@ -26,7 +28,6 @@ Rails.application.routes.draw do
       resources :feeds
     end
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :feeds  do
       resources :comments
       collection do

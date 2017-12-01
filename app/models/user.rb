@@ -12,4 +12,16 @@ class User < ApplicationRecord
   def self.admin?
     current_user.admin
   end
+
+  def admin?
+   	role == 'admin'
+  end
+
+  def writer?
+   	role == 'writer'
+  end
+
+  def reader?
+   	role == 'staff'
+  end
 end

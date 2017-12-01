@@ -12,8 +12,8 @@
 
   <body>
     <%= render 'shared/nav_header'%>
-    <%= render 'shared/header_other'%>
-    <div class="row">
+
+    <div class="row admin-layout">
        <div class="col-md-12">
           <% flash.each do |name, message|%>
              <div class="alert alert-<%=name%>">

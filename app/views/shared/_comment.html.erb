@@ -19,11 +19,9 @@
      <div class="comment-author">
        <span style="font-weight:600; font-size:16px;">Автор: <%= comment.author %></span>
        <span style="float:right;">
-         <% if user_signed_in? %>
-           <% if current_user.id == comment.user_id%>
+           <% if can? :delete, current_user %>
              <%= link_to '', [comment.feed, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: "delate_comment fa fa-times" %>
            <% end %>
-         <% end %>
        </span>
      </div>
      <div class="comment-body">

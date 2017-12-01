@@ -1,6 +1,5 @@
-<%= link_to 'Sources', sources_path %>|| <%= link_to 'Back To All Feeds', feeds_path %>
-<%= render 'shared/feed_item'%>
-<%= will_paginate @posts %>
-<br>
-
-<%= link_to 'New Feed', new_feed_path %>
+<section id='feeds'>
+  <div class="masonry container-fluid">
+    <%= render partial: 'feed', collection: @feeds%>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+<h5 style="text-align: center;">Популярное сейчас</h5>
+<% @top_feeds.each do |feed| %>
+  <a href="<%= feed_path(feed) %>" class="mini-link">
+    <div class="mini-item">
+      <div class="mini-item-img">
+         <img src="<%= feed.image %>">
+      </div>
+      <div>
+        <span><i class="fa fa-commenting" aria-hidden="true"></i> <%= feed.comments.size %></span>
+        <span><i class="fa fa-eye" aria-hidden="true"></i> <%= feed.view_count %> </span>
+        <p class="mini-item-title" ><%= link_to feed.title, feed %></p>
+      </div>
+    </div>
+  </a>  
+<% end %>

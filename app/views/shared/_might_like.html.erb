@@ -1,20 +1,22 @@
 <% @categories.each do |category| %>
- <h3><%= category.name  %></h3>
- <%  @might_like = Feed.where("source_id IN (?)", category.source_ids).order("view_count DESC").first(4)%>
+  <h3><%= category.name  %></h3>
+  <%  @might_like = Feed.where("source_id IN (?)", category.source_ids).order("view_count DESC").first(4)%>
   <div class="row">
     <% @might_like.each do |feed| %>
         <div class="col-md-6">
-          <div class="mini-item">
-            <div class="">
-               <img src="<%= feed.image %>">
+          <a href="<%= feed_path(feed) %>" class="mini-link">
+            <div class="mini-item">
+              <div class="mini-item-img">
+                 <img src="<%= feed.image %>">
+              </div>
+              <div>
+                <span><i class="fa fa-commenting" aria-hidden="true"></i> <%= feed.comments.size %></span>
+                <span><i class="fa fa-eye" aria-hidden="true"></i> <%= feed.view_count %> </span>
+                <p class="mini-item-title" ><%= link_to feed.title, feed %></p>
+              </div>
             </div>
-            <div>
-              <span><i class="fa fa-commenting" aria-hidden="true"></i> <%= feed.comments.size %></span>
-              <span><i class="fa fa-eye" aria-hidden="true"></i> <%= feed.view_count %> </span>
-              <p class="mini-item-title" ><%= link_to feed.title, feed %></p>
-            </div>
-          </div>
+          </a>
         </div>
     <% end %>
-   </div>
+  </div>
 <% end %>

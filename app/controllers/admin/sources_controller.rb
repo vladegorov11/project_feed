@@ -1,6 +1,6 @@
 class Admin::SourcesController < Admin::AdminController
   before_action :set_source, only: [:show, :edit, :update, :destroy]
-  
+
   def index
     @sources = Source.all
   end
@@ -17,7 +17,6 @@ class Admin::SourcesController < Admin::AdminController
 
   def create
     @source = Source.new(source_params)
-
     respond_to do |format|
       if @source.save
         format.html { redirect_to admin_source_path(@source), success: 'Ресурс успешно создан.' }

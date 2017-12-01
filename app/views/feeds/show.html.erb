@@ -1,6 +1,4 @@
-
 <div class="row">
-
   <div class="col-md-8">
     <div class="show-news-img-wrap">
       <img src="<%= @feed.image %>" alt="" class="show-news-img">
@@ -23,8 +21,14 @@
         <% end %>
     </span>
     </p>
-
-    <%= @feed.full_description.html_safe%>
+    <div class="content-feed">
+    <% if @feed.full_description.blank? %>
+      <%= @feed.description.html_safe%>
+    <%else%>
+      <%= @feed.full_description.html_safe%>
+    <%end%>
+      
+    </div>
     <%= render 'shared/comment'%>
   </div>
   <div class="col-md-4">
@@ -32,6 +36,6 @@
     <%= render 'shared/might_like'%>
   </div>
 </div>
-
-<%= link_to 'Edit', edit_admin_feed_path(@feed) %> |
-<%= link_to 'Back', feeds_path %>
+<% if can? :update, current_user %>
+<%= link_to 'Edit', edit_admin_feed_path(@feed) %> 
+<% end %>

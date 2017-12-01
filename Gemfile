@@ -50,6 +50,9 @@ gem 'twitter', '~> 6.0'
 gem 'trix'
 gem 'open-weather'
 gem 'omniauth-twitter'
+gem "cancan"
+gem 'sidekiq', '~> 5.0'
+gem 'whenever', :require => false
 #gem 'oauth', '~> 0.5.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
