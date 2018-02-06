@@ -16,7 +16,7 @@ class TwitterApiFeed
     tweets_list = @client.home_timeline
     tweets_list.each do |tweet|
       if Tweet.where(["tweet_id = ? " , tweet.id]).blank?
-        Formatter.super_format(tweet, @@conntent_type, '' , @user )
+        Formatter.new.format_tweets(tweet, @user)
       end
     end
   end

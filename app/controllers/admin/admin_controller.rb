@@ -2,9 +2,14 @@ class Admin::AdminController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin
   layout 'admin.html.erb'
+
+  rescue_from CanCan::AccessDenied do |exeption|
+    redirect_to root_path , danger: "Страница не существует "
+  end
+
   protected
 
   def check_admin
-    redirect_to root_path , :success => "У вас нет прав для просмотра этой страници" unless current_user.admin?
+    authorize! :manage, :all
   end
 end

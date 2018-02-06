@@ -18,10 +18,12 @@
   <div class="feed-footer">
     <i class="fa fa-commenting" aria-hidden="true"> <%= feed.comments.size %></i>
     <i class="fa fa-eye" aria-hidden="true"> <%= feed.view_count%></i>
-    <%= link_to "Редактировать", edit_feed_path(feed)%>
-    <%if user_signed_in? && current_user.admin? %>
-        <%= link_to 'Редактировать ', edit_admin_feed_path(feed), class: "feed-link" %> |
-        <%= link_to 'Удалить', admin_feed_path(feed), method: :delete, data: { confirm: 'Are you sure?' }, class: "feed-link" %>
+    <% if can? :edit, feed %>
+      <%= link_to "Редактировать", edit_feed_path(feed), class: "feed-link"%>
+    <% end %>
+    <%if can? :destroy, feed %>
+
+        <%= link_to 'Удалить', feed_path(feed), method: :delete, data: { confirm: 'Are you sure?' }, class: "feed-link" %>
     <% end %>
   </div>
 </div>

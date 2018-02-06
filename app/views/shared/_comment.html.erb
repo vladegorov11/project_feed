@@ -2,9 +2,7 @@
 <% if user_signed_in? %>
   <h2>Добавить комментарий:</h2>
   <%= form_with(model: [ @feed, @feed.comments.build ], local: true) do |f| %>
-
     <%= image_tag current_user.avatar.url(:thumb), class: "user_icon"  if current_user.avatar? %>
-    
     <br>
     <p>
       <%= f.text_area :body, class: "text-area-comment", placeholder: "Текст комментария" %>
@@ -19,7 +17,7 @@
      <div class="comment-author">
        <span style="font-weight:600; font-size:16px;">Автор: <%= comment.author %></span>
        <span style="float:right;">
-           <% if can? :delete, current_user %>
+           <% if can? :delete, comment %>
              <%= link_to '', [comment.feed, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: "delate_comment fa fa-times" %>
            <% end %>
        </span>

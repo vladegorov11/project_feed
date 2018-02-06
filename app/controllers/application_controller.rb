@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
   end
   
   def top_feeds
-    @top_feeds = Feed.order("view_count DESC").first(10)
+    time =  Time.now - (60 * 60 * 24)
+    @top_feeds = Feed.where("created_at >= :time", time: time ).order("view_count DESC").first(10)
   end
 
 end

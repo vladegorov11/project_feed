@@ -20,9 +20,3 @@
 //= require social-share-button
 
 
-
-// $( "#filter" ).click(function() {
-//   $( "#filtercontainer" ).toggleClass( "filteractive" );
-// });
-
-

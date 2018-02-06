@@ -9,19 +9,19 @@
              <li><%= link_to 'Все новости', feeds_path %></li>
              <li><%= link_to 'События', events_path%></li>
              <li><a href="<%=my_feeds_feeds_path %>">Моя лента</a></li>
+             <% if user_signed_in? %>
              <li>
-               <% if user_signed_in? %>
                <p class="badge-top">
-               <%= new_feed_count(current_user) %>
-             </p>
-               <% end %>
+                <%= new_feed_count(current_user) %>
+               </p>
              </li>
+             <% end %>
+             <ul class="social-link-top">
              <li><a href=""><i class="fa fa-paper-plane" aria-hidden="true"></i></a></li>
-                     <ul class="social-link-top">
-                     <li><a href=""><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
-                     <li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                     <li><a href=""><i class="fa fa-google-plus-official" aria-hidden="true"></i></a></li>
-                     </ul>
+             <li><a href=""><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+             <li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+             <li><a href=""><i class="fa fa-google-plus-official" aria-hidden="true"></i></a></li>
+             </ul>
 
            </ul>
            <div class="rates pull-right">

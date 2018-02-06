@@ -1,4 +1,5 @@
 class Feed < ApplicationRecord
+
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 

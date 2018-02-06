@@ -8,18 +8,24 @@ class FeedsController < ApplicationController
     @sourse = Source.all
     @feeds = SearchFilter.new(params[:filter]).scope.current_page(params[:page]) if params[:filter]
     @feeds = SearchFilter.new(params[:title_search]).scope.current_page(params[:page]) if params[:title_search]
-    @feeds  = Feed.current_page(params[:page]).order("created_at DESC") unless params[:filter]
+    @feeds  = Feed.current_page(params[:page]).order("created_at DESC") unless params[:filter] || params[:title_search]
     @caterories = Category.all
-    
   end
-
+  def search 
+    @feeds = SearchFilter.new(params[:title_search]).scope.current_page(params[:page]) if params[:title_search]
+    render json: @feeds
+  end 
   def show
     @categories = Category.all.order("view_count DESC")
     add_view_to_feed(@feed)
+    unless @feed
+      render text: "PAge not found", status: 404
+    end
   end
 
   def new
     @feed = Feed.new
+    authorize! :new, Feed
   end
 
   def my_feeds
@@ -41,6 +47,7 @@ class FeedsController < ApplicationController
   end
 
   def edit
+    authorize! :edit, @feed
   end
 
   def create
@@ -55,6 +62,7 @@ class FeedsController < ApplicationController
         format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
     end
+    authorize! :create, Feed
   end
 
   def update
@@ -67,6 +75,7 @@ class FeedsController < ApplicationController
         format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
     end
+    authorize! :update, @feed
   end
   def destroy
     @feed.destroy
@@ -74,10 +83,11 @@ class FeedsController < ApplicationController
       format.html { redirect_to feeds_url, success: 'Новость успешно удалена' }
       format.json { head :no_content }
     end
+    authorize! :destroy, @feed
   end
   private
 
-  
+
 
   def add_params_to_create_hash(create_params)
     fix_params = {source_id: 3}

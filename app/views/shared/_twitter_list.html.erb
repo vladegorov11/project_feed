@@ -1,7 +1,7 @@
 <% if user_signed_in?%>
   <div class="col-md-2 twitter_list" style="padding: 0;">
       <div class="twitter-content shadow">
-        <% current_user.tweets.each do |tweet|%>
+        <% current_user.tweets.order(created_at: :desc).each do |tweet|%>
           <div class="twitter-item">
             <img src="<%= tweet.profile_image_url %>" style="border-radius: 40px" alt="">
             <a href="<%= tweet.user_url %>" class="feed-link" style="padding-left: 10px;">@<%= tweet.user_screen_name %></a>

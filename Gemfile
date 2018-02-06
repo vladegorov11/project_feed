@@ -52,7 +52,10 @@ gem 'open-weather'
 gem 'omniauth-twitter'
 gem "cancan"
 gem 'sidekiq', '~> 5.0'
-gem 'whenever', :require => false
+gem 'sidekiq-client-cli'
+gem 'whenever', require: false
+
+
 #gem 'oauth', '~> 0.5.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -60,6 +63,11 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec'
+  gem 'rspec-rails', '~> 3.6'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 end
 
 group :development do

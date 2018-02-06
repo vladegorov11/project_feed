@@ -1,10 +1,9 @@
 <div class="container-fluid header3">
   <div class="row">
     <div class="col-md-6">
-
         <div class="filter-and-search">
-          <%= form_with url: search_feeds_path, method: "Get",html: { id: 'form-search' } , local: true  do |f| %>
-              <input type="text" class="search-input" name="title_search" placeholder="Поиск" required>
+          <%= form_with  url: feeds_path, method: "Get",html: { id: 'form-search' } , local: true  do |f| %>
+              <input id="who" type="text" class="search-input" name="title_search" placeholder="Поиск" required>
               <input type="submit"   class="search-btn" value="">
           <% end %>
           <% if(current_user) %>
@@ -14,10 +13,13 @@
             <%= render 'shared/filter_window'%>
           <% end %>
         </div>
+        <div class="fast-search">
+           <div id="search_advice_wrapper"></div>
+        </div>
     </div>
     <div class="col-md-3">
       <div class="filter-and-search">
-          <%= request.remote_ip %>
+
       </div>
     </div>
     <div class="col-md-3">
@@ -26,12 +28,12 @@
            <div class="col-md-8 user_menu">
              <ul>
                <%if user_signed_in? %>
-               <li><%=link_to '<i class="fa fa-sign-out" aria-hidden="true"> Выйти</i>'.html_safe, destroy_user_session_path , method: :delete%></li>
-               <li><%=link_to '<i class="fa fa-user" aria-hidden="true"> Профайл</i>'.html_safe, profile_user_path(current_user.id) %></li>
-               <li><%=link_to "<i class='fa fa-cog' aria-hidden='true'> Настройки</i>".html_safe, profile_setup_user_path(current_user.id)%></li>
+               <li><%=link_to '<i class="fa fa-sign-out" aria-hidden="true"></i> Выйти'.html_safe, destroy_user_session_path , method: :delete%></li>
+               <li><%=link_to '<i class="fa fa-user" aria-hidden="true"></i> Профайл'.html_safe, profile_user_path(current_user.id) %></li>
+               <li><%=link_to "<i class='fa fa-cog' aria-hidden='true'></i> Настройки".html_safe, profile_setup_user_path(current_user.id)%></li>
                <% else %>
-                <li><%=link_to '<i class="fa fa-sign-in" aria-hidden="true"> Войти</i>'.html_safe, new_user_session_path%></li>
-                <li><%=link_to '<i class="fa fa-user-plus" aria-hidden="true"> Регистрация</i>'.html_safe, new_user_registration_path%></li>
+                <li><%=link_to '<i class="fa fa-sign-in" aria-hidden="true"></i> Войти'.html_safe, new_user_session_path%></li>
+                <li><%=link_to '<i class="fa fa-user-plus" aria-hidden="true"></i> Регистрация'.html_safe, new_user_registration_path%></li>
                <% end %>
              </ul>
            </div>
@@ -53,3 +55,28 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $("#who").bind("input ", function() {
+    if(this.value.length >= 2){
+        $.ajax({
+            type: 'GET',
+            url: "/search", 
+            data: {'title_search':this.value},
+            success: function(data){
+              $("#search_advice_wrapper").html('');
+              for(i in data){
+                $("#search_advice_wrapper").append('<a class="feed-link" href=/feeds/'+data[i]["id"]+'><div class="advice_variant"><img src='+data[i]["image"]+'><span>'+data[i]["title"].substring(0, 50)+'...</span></div></a>').show(600);
+              }
+             console.log( data ); 
+           }
+       });
+    }
+  });
+
+  $( "#who" ).focusout(function() {
+     $(".advice_variant").hide(500);
+  });
+  $( "#who" ).focus(function() {
+     $(".advice_variant").show(500);
+  });
+</script>
